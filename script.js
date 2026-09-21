@@ -1188,17 +1188,22 @@ if (scrollCueEl && heroSectionEl) {
   const legendMax = document.getElementById("mapLegendMax");
   const legendLowDept = document.getElementById("mapLegendLowDept");
   const legendHighDept = document.getElementById("mapLegendHighDept");
+  const mapSource = document.getElementById("mapSource");
 
   const INDICATORS = {
     endes: {
       data: PERU_MAP_DATA.endes,
       title: "% de mujeres de 15-49 años que sufrió violencia de su pareja alguna vez",
       fmt: (v) => v.toFixed(1) + "%",
+      source: "INEI, ENDES 2025, cuadro 12.1",
+      sourceUrl: "https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Lib2089/libro.pdf",
     },
     enares: {
       data: PERU_MAP_DATA.enares,
       title: "% de personas de 18 años a más que tolera la violencia contra las mujeres",
       fmt: (v) => v.toFixed(1) + "%",
+      source: "INEI, ENARES 2024, cuadro 1.12",
+      sourceUrl: "https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Lib2031/libro.pdf",
     },
   };
 
@@ -1282,6 +1287,14 @@ if (scrollCueEl && heroSectionEl) {
     if (legendMax) legendMax.textContent = indicator.fmt(max);
     if (legendLowDept && lowEntry) legendLowDept.textContent = `${PERU_MAP_DATA.names[lowEntry[0]]} (${indicator.fmt(lowEntry[1])})`;
     if (legendHighDept && highEntry) legendHighDept.textContent = `${PERU_MAP_DATA.names[highEntry[0]]} (${indicator.fmt(highEntry[1])})`;
+    if (mapSource) {
+      const link = document.createElement("a");
+      link.href = indicator.sourceUrl;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.textContent = indicator.source;
+      mapSource.replaceChildren(document.createTextNode("Fuente de los datos: "), link, document.createTextNode("."));
+    }
   }
 
   toggle.querySelectorAll(".map-toggle-btn").forEach((btn) => {

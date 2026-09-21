@@ -227,8 +227,13 @@ def hero_home(version_link_html, hub_lede_extra=""):
 
   <section class="section" id="hub">
     <div class="wrap">
-      <h2>Explora por módulo</h2>
-      <p class="section-lede">Elige un módulo del ciclo de formación para ver de qué trata, quién lo dicta y su material de clase.{hub_lede_extra}</p>
+      <div class="hub-bridge">
+        <span class="eyebrow">Del reto a las herramientas</span>
+        <h2>¿Cómo pasamos del problema a una solución?</h2>
+        <p>El concurso invita a transformar datos sobre la violencia en propuestas útiles. Para preparar ese trabajo, el ciclo de formación acompaña a los equipos con cinco módulos: primero se conoce el problema y las fuentes; después se practican métodos de análisis y formas de comunicar los hallazgos.</p>
+      </div>
+      <h3 class="hub-heading">Explora los cinco módulos de formación</h3>
+      <p class="section-lede">Cada tarjeta reúne el tema, las sesiones, los docentes y los materiales del módulo.{hub_lede_extra}</p>
       <div class="hub-grid">
 {hub_html}
       </div>
@@ -328,7 +333,8 @@ problema_inner = """      <div class="stat-grid">
             <p class="map-legend-note">Departamento más bajo: <strong id="mapLegendLowDept">—</strong>. Más alto: <strong id="mapLegendHighDept">—</strong>.</p>
           </div>
         </div>
-        <p class="map-source">Fuente: ENDES 2025 y ENARES 2024 (INEI).</p>
+        <p class="map-source" id="mapSource">Fuente de los datos: <a href="https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Lib2089/libro.pdf" target="_blank" rel="noopener">INEI, ENDES 2025, cuadro 12.1</a>.</p>
+        <p class="map-source map-source--method">Lima combina Lima Metropolitana y Región Lima mediante un promedio ponderado. Base cartográfica: <a href="https://github.com/juaneladio/peru-geojson" target="_blank" rel="noopener">peru-geojson</a>, con contornos simplificados.</p>
       </div>"""
 
 problema_main = page_header(PROBLEMA_EYEBROW, PROBLEMA_TITLE, PROBLEMA_LEDE) + section_wrap(problema_inner)
@@ -687,3 +693,4 @@ onepage_html = (
 with open(os.path.join(ROOT, "todo-en-uno.html"), "w", encoding="utf-8") as f:
     f.write(onepage_html)
 print("wrote todo-en-uno.html")
+
