@@ -287,11 +287,15 @@ if (scheduleEl && filterEl) {
 // mantiene al filtrar por módulo, porque renderTeacherCards solo filtra
 // (nunca reordena) este array. Sumillas condensadas a partir del documento
 // oficial "Sumilla ponentes" que envió el equipo — no se inventa nada de
-// quien no mandó su sumilla (Kaarina y Orlando quedan sin bio por ahora).
+// quien no mandó su sumilla (Kaarina queda sin bio por ahora).
 const DOCENTES = [
   // — MIMP —
   { name: "Kaarina Valer Jaime", mod: "M1", org: "MIMP" },
-  { name: "Orlando Angulo", mod: "M1", org: "MIMP" },
+  {
+    name: "Orlando Angulo", mod: "M1", org: "MIMP",
+    role: "Especialista estadístico, Observatorio Nacional",
+    bio: "Licenciado en Estadística (UNMSM) y egresado de la maestría en Gestión Pública (Universidad César Vallejo). Tiene más de 10 años de experiencia en análisis de datos y gestión de información. En el Observatorio Nacional trabaja con datos sobre violencia en el marco de la Ley N.º 30364 para apoyar la toma de decisiones.",
+  },
   {
     name: "Yubel Salazar Ríos", mod: "M1", org: "MIMP",
     role: "Programa Nacional Warmi Ñan",
@@ -354,6 +358,7 @@ const DOCENTES = [
 ];
 
 const DOCENTE_FOTOS = {
+  "Orlando Angulo": "images/docentes/orlando-angulo.jpg",
   "Alfonso Rodríguez": "images/docentes/alfonso-rodriguez.jpg",
   "Andrés Clavijo Abril": "images/docentes/andres-clavijo.jpg",
   "Axel Pereda Escalante": "images/docentes/axel-pereda.jpg",
@@ -383,7 +388,7 @@ const orgKey = (org) => {
 // el equipo): MIMP -que organiza- primero, luego UNFPA, Ipsos, Q-LAB y
 // LabStat-INEI.
 const ORG_SECTIONS = [
-  { key: "mimp", label: "Ponentes MIMP" },
+  { key: "mimp", label: "Observatorio Nacional de la Violencia contra las Mujeres y los Integrantes del Grupo Familiar" },
   { key: "unfpa", label: "UNFPA" },
   { key: "ipsos", label: "Ipsos" },
   { key: "qlab", label: "Q-LAB PUCP" },
@@ -1289,3 +1294,4 @@ if (scrollCueEl && heroSectionEl) {
 
   render("endes");
 })();
+

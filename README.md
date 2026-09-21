@@ -78,14 +78,15 @@ Si descargaste un ZIP, esos comandos no funcionarán hasta inicializar y vincula
 
 La web usa el proyecto de Vercel **`dataton-mimp-2026`**. Desde la carpeta que contiene `index.html`:
 
-1. Comprueba si esta copia está vinculada al proyecto existente:
+1. Inicia sesión con la **cuenta de Vercel que ya tiene acceso a ese proyecto**. Si aún no tienes acceso, pídeselo a la persona propietaria del proyecto; crear otra cuenta o proyecto no conserva automáticamente el enlace. Si la herramienta de Vercel no está instalada, puedes instalarla con `npm install -g vercel` (requiere Node.js). Después ejecuta `vercel login`.
+2. Comprueba si esta copia está vinculada al proyecto existente:
 
    ```powershell
    Test-Path -LiteralPath '.\.vercel\project.json'
    ```
 
-2. Si aparece `False` (normal después de clonar GitHub), ejecuta `vercel link` y **elige el proyecto existente `dataton-mimp-2026`**. Repite la comprobación hasta obtener `True`.
-3. Cuando hayas revisado los cambios, publícalos:
+3. Si aparece `False` (normal después de clonar GitHub), ejecuta `vercel link` y **elige el proyecto existente `dataton-mimp-2026`**. Repite la comprobación hasta obtener `True`.
+4. Cuando hayas revisado los cambios, publícalos:
 
    ```powershell
    vercel --prod
