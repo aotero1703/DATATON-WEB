@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El problema · Datatón Nacional 2026</title>
+<meta name="description" content="Cifras oficiales de violencia contra la mujer (ENDES, ENARES) y el modelo ecológico de la violencia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230e7490'/%3E%3Ctext x='32' y='42' font-family='sans-serif' font-size='26' font-weight='800' fill='%23fff' text-anchor='middle'%3EDN%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<canvas id="bgCanvas" aria-hidden="true"></canvas>
+
+<div class="skip-note" role="note">
+  Recurso informativo <strong>no oficial</strong>, elaborado por un equipo participante como propuesta piloto de apoyo para el Datatón Nacional 2026 del MIMP. No sustituye las bases oficiales.
+</div>
+<header class="site-header" id="top">
+  <div class="wrap header-inner">
+    <div class="brand">
+      <a class="brand-mark" href="index.html" aria-label="Inicio del Datatón Nacional">DN</a>
+      <span class="brand-text">
+        <a class="brand-home" href="index.html">Datatón Nacional</a>
+        <a class="brand-observatorio" href="https://www.gob.pe/institucion/mimp/tema/observatorio-nacional-de-la-violencia-contra-las-mujeres-y-los-integrantes-del-grupo-familiar" target="_blank" rel="noopener">2026 · Observatorio Nacional MIMP</a>
+      </span>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="siteNav">
+      <a href="index.html">Inicio</a>
+      <a href="problema.html" class="is-current">El problema</a>
+      <a href="ruta.html">La ruta</a>
+      <a href="formacion.html">Formación</a>
+      <a href="docentes.html">Docentes</a>
+      <a href="evaluacion.html">Evaluación</a>
+      <a href="premios.html">Premios</a>
+      <a href="socios.html">Socios</a>
+      <a href="datos.html">Fuentes de datos</a>
+      <a href="participa.html" class="nav-cta">Participa</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero hero--page" id="heroSection">
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="wrap page-header-inner">
+      <a class="back-link" href="index.html">&larr; Inicio</a>
+      <span class="eyebrow">El contexto</span>
+      <h1 class="page-title">Por qué este datatón</h1>
+      <p class="lede">Cifras oficiales citadas en las bases del concurso (ENDES 2025 y ENARES 2024) que sustentan la urgencia de generar evidencia aplicada bajo la Ley N.° 30364.</p>
+    </div>
+    <button class="scroll-cue scroll-cue--compact" id="scrollCue" aria-label="Bajar a la siguiente sección" type="button">
+      <span></span>
+    </button>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="stat-grid">
+        <div class="stat-card">
+          <strong class="stat-number" data-count="49.1" data-suffix="%">0%</strong>
+          <span class="stat-desc">de mujeres de 15 a 49 años sufrió violencia de su pareja alguna vez</span>
+          <span class="stat-source">Fuente: ENDES 2025</span>
+        </div>
+        <div class="stat-card">
+          <strong class="stat-number" data-count="8.6" data-suffix=" pp">0</strong>
+          <span class="stat-desc">de reducción en ese mismo indicador (mujeres de 15 a 49 años víctimas de violencia de su pareja), entre 2019 y 2025</span>
+          <span class="stat-source">Fuente: ENDES 2019-2025</span>
+        </div>
+        <div class="stat-card">
+          <strong class="stat-number" data-count="75.7" data-suffix="%">0%</strong>
+          <span class="stat-desc">de la población justificaba la violencia hacia las mujeres</span>
+          <span class="stat-source">Fuente: ENARES 2024</span>
+        </div>
+        <div class="stat-card">
+          <strong class="stat-number" data-count="69.7" data-suffix="%">0%</strong>
+          <span class="stat-desc">de hombres mayores de 18 años justifica la violencia sexual contra mujeres</span>
+          <span class="stat-source">Fuente: ENARES 2024</span>
+        </div>
+      </div>
+
+      <div class="ecology">
+        <h3>Modelo ecológico de la violencia</h3>
+        <p>Toda infografía debe vincular al menos dos de estos niveles y explorar interacciones entre variables. Pasa el cursor (o toca en el celular) sobre cada nivel para ver ejemplos.</p>
+        <div class="ecology-diagram ecology-diagram--wide">
+          <svg viewBox="0 0 600 340" class="ecology-svg ecology-svg--wide" role="img" aria-label="Modelo ecológico de la violencia: los niveles social, comunitario, relacional e individual, uno dentro del otro. Interactivo: pasa el cursor sobre cada nivel para ver ejemplos.">
+            <ellipse class="ecology-level" data-level="social" cx="305" cy="170" rx="255" ry="140" fill="#4c1d95" stroke="#f7f9fb" stroke-width="2" tabindex="0" role="button" aria-label="Nivel social. Ver ejemplos"></ellipse>
+            <ellipse class="ecology-level" data-level="comunitario" cx="385" cy="170" rx="175" ry="115" fill="#6d28d9" stroke="#f7f9fb" stroke-width="2" tabindex="0" role="button" aria-label="Nivel comunitario. Ver ejemplos"></ellipse>
+            <ellipse class="ecology-level" data-level="relacional" cx="450" cy="170" rx="110" ry="95" fill="#0891b2" stroke="#f7f9fb" stroke-width="2" tabindex="0" role="button" aria-label="Nivel relacional. Ver ejemplos"></ellipse>
+            <ellipse class="ecology-level" data-level="individual" cx="505" cy="170" rx="55" ry="75" fill="#5eead4" stroke="#f7f9fb" stroke-width="2" tabindex="0" role="button" aria-label="Nivel individual. Ver ejemplos"></ellipse>
+            <text x="128" y="170" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Sora, sans-serif" font-weight="700" font-size="19" pointer-events="none">Social</text>
+            <text x="272" y="170" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Sora, sans-serif" font-weight="700" font-size="17" pointer-events="none">Comunitario</text>
+            <text x="392" y="163" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Sora, sans-serif" font-weight="700" font-size="15" pointer-events="none">Relacional</text>
+            <text x="505" y="170" text-anchor="middle" dominant-baseline="middle" fill="#06333c" font-family="Sora, sans-serif" font-weight="700" font-size="14" pointer-events="none">Individual</text>
+          </svg>
+          <div class="ecology-panel" id="ecologyPanel">
+            <strong id="ecologyPanelTitle">Pasa el cursor sobre un nivel</strong>
+            <p id="ecologyPanelText">Cada nivel agrupa distintos factores asociados a la violencia contra las mujeres — desde lo más amplio (social) hasta lo más cercano a la persona (individual).</p>
+          </div>
+        </div>
+        <p class="ecology-source">Fuente: adaptado de Bronfenbrenner (1979) y Krug et al. (2002) — citado en las Bases del Datatón Nacional 2026. Ejemplos ilustrativos del tipo de factores de cada nivel, no cifras oficiales.</p>
+      </div>
+
+      <div class="why-card">
+        <h3>¿Por qué estas cifras llevan a un datatón?</h3>
+        <p>
+          Las bases oficiales señalan que la data presentada evidencia que, si bien la Ley N.° 30364 sí ha tenido impacto
+          — el indicador principal bajó 8.6 pp entre 2019 y 2025 —, la magnitud del problema sigue siendo significativa
+          y la sociedad peruana mantiene una alta tolerancia hacia la violencia contra las mujeres. Esa combinación es
+          la que justifica el datatón: no basta con describir la problemática, hace falta <strong>generar conocimiento
+          aplicado</strong> a partir del análisis de datos cuantitativos, para identificar patrones, factores asociados
+          y brechas en la implementación de la Ley N.° 30364 y su Reglamento — evidencia que el Estado pueda usar para
+          tomar decisiones más efectivas de prevención, atención, protección y sanción.
+        </p>
+      </div>
+
+      <div class="map-card">
+        <h3>Las cifras por departamento</h3>
+        <p>El 49.1% y el 75.7% de arriba son promedios nacionales — varían bastante entre departamentos. Elige un indicador para ver el mapa.</p>
+        <div class="map-toggle" role="group" id="mapToggle" aria-label="Elegir indicador del mapa">
+          <button type="button" class="map-toggle-btn is-active" data-indicator="endes">Violencia de pareja<br><small>ENDES 2025</small></button>
+          <button type="button" class="map-toggle-btn" data-indicator="enares">Tolerancia a la violencia<br><small>ENARES 2024</small></button>
+        </div>
+        <div class="map-layout">
+          <div class="map-svg-wrap">
+            <svg id="peruMap" role="img" aria-label="Mapa del Perú por departamento, coloreado según el indicador elegido"><!-- generado por script.js --></svg>
+            <div class="map-tooltip" id="mapTooltip" hidden></div>
+          </div>
+          <div class="map-legend">
+            <span class="map-legend-title" id="mapLegendTitle">% de mujeres de 15-49 años que sufrió violencia de su pareja alguna vez</span>
+            <div class="map-legend-scale" id="mapLegendScale"></div>
+            <div class="map-legend-minmax">
+              <span id="mapLegendMin">—</span>
+              <span id="mapLegendMax">—</span>
+            </div>
+            <p class="map-legend-note">Departamento más bajo: <strong id="mapLegendLowDept">—</strong>. Más alto: <strong id="mapLegendHighDept">—</strong>.</p>
+          </div>
+        </div>
+        <p class="map-source">Fuente: ENDES 2025 y ENARES 2024 (INEI).</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-partners">
+      <div class="footer-partner-group">
+        <span class="footer-partner-label">Organiza</span>
+        <div class="footer-logos">
+          <a class="footer-logo-chip" href="https://www.gob.pe/institucion/mimp/tema/observatorio-nacional-de-la-violencia-contra-las-mujeres-y-los-integrantes-del-grupo-familiar" target="_blank" rel="noopener"><img src="images/partners/observatorio.png" alt="Observatorio Nacional de la Violencia contra las Mujeres y los Integrantes del Grupo Familiar, MIMP" loading="lazy"></a>
+        </div>
+      </div>
+      <div class="footer-partner-group">
+        <span class="footer-partner-label">Aliados del ciclo de formación</span>
+        <div class="footer-logos">
+          <a class="footer-logo-chip" href="https://peru.unfpa.org/es" target="_blank" rel="noopener"><img src="images/partners/unfpa.png" alt="UNFPA" loading="lazy"></a>
+          <a class="footer-logo-chip" href="https://www.ipsos.com/es-pe" target="_blank" rel="noopener"><img src="images/partners/ipsos.png" alt="Ipsos" loading="lazy"></a>
+          <a class="footer-logo-chip" href="https://qlab.pucp.edu.pe/" target="_blank" rel="noopener"><img src="images/partners/qlab.png" alt="Q-LAB PUCP" loading="lazy"></a>
+          <a class="footer-logo-chip" href="https://www.gob.pe/88809-laboratorio-estadistico-labstat" target="_blank" rel="noopener"><img src="images/partners/inei.png" alt="INEI · LabStat" loading="lazy"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-contact">
+      <span>¿Consultas? <a href="mailto:observatorioviolencia@mimp.gob.pe">observatorioviolencia@mimp.gob.pe</a> · Central telefónica MIMP: <a href="tel:+51016261600">(01) 626-1600, anexo 8503</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="map-data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

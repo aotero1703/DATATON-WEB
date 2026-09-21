@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datatón Nacional 2026 · Inicio</title>
+<meta name="description" content="Página informativa y dinámica sobre el Datatón Nacional 2026 del MIMP: cronograma en vivo, ciclo de formación, rúbricas de evaluación, premios y fuentes de datos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230e7490'/%3E%3Ctext x='32' y='42' font-family='sans-serif' font-size='26' font-weight='800' fill='%23fff' text-anchor='middle'%3EDN%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<canvas id="bgCanvas" aria-hidden="true"></canvas>
+
+<div class="skip-note" role="note">
+  Recurso informativo <strong>no oficial</strong>, elaborado por un equipo participante como propuesta piloto de apoyo para el Datatón Nacional 2026 del MIMP. No sustituye las bases oficiales.
+</div>
+<header class="site-header" id="top">
+  <div class="wrap header-inner">
+    <div class="brand">
+      <a class="brand-mark" href="index.html" aria-label="Inicio del Datatón Nacional">DN</a>
+      <span class="brand-text">
+        <a class="brand-home" href="index.html">Datatón Nacional</a>
+        <a class="brand-observatorio" href="https://www.gob.pe/institucion/mimp/tema/observatorio-nacional-de-la-violencia-contra-las-mujeres-y-los-integrantes-del-grupo-familiar" target="_blank" rel="noopener">2026 · Observatorio Nacional MIMP</a>
+      </span>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="siteNav">
+      <a href="index.html" class="is-current">Inicio</a>
+      <a href="problema.html">El problema</a>
+      <a href="ruta.html">La ruta</a>
+      <a href="formacion.html">Formación</a>
+      <a href="docentes.html">Docentes</a>
+      <a href="evaluacion.html">Evaluación</a>
+      <a href="premios.html">Premios</a>
+      <a href="socios.html">Socios</a>
+      <a href="datos.html">Fuentes de datos</a>
+      <a href="participa.html" class="nav-cta">Participa</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" id="heroSection">
+    <div class="hero-photos" aria-hidden="true">
+      <img class="hero-photo hero-photo--left" src="images/hero-programando.jpg" alt="" loading="eager">
+      <img class="hero-photo hero-photo--right" src="images/hero-analisis.jpg" alt="" loading="eager">
+    </div>
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Concurso de soluciones basadas en datos</span>
+        <h1>Datatón Nacional 2026 <span>contra la violencia hacia niñas, adolescentes y mujeres</span></h1>
+        <p class="lede">
+          Convocado por el <strong>MIMP</strong>, a través del <a class="hero-observatorio" href="https://www.gob.pe/institucion/mimp/tema/observatorio-nacional-de-la-violencia-contra-las-mujeres-y-los-integrantes-del-grupo-familiar" target="_blank" rel="noopener">Observatorio Nacional de la Violencia contra las Mujeres y los Integrantes del Grupo Familiar</a>, con el ciclo de formación desarrollado junto a <strong>UNFPA</strong> e <strong>Ipsos</strong>. Este micrositio traduce las bases oficiales en un tablero de seguimiento vivo para el equipo.
+        </p>
+        <div class="hero-actions">
+          <a href="ruta.html" class="btn btn-primary">Ver cronograma en vivo</a>
+          <a href="evaluacion.html" class="btn btn-ghost">Cómo se evalúa</a>
+        </div>
+        <a href="todo-en-uno.html" class="hero-alt-link">Prefieres verlo todo en una sola página →</a>
+        <div class="hero-status" id="heroStatus" aria-live="polite">
+          <span class="dot"></span> <span id="heroStatusText">Calculando fase actual…</span>
+        </div>
+      </div>
+      <div class="hero-panel" aria-hidden="true">
+        <div class="panel-card">
+          <div class="panel-row">
+            <span>Progreso del concurso</span>
+            <span id="progressPct">0%</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+          <div class="panel-mini" id="panelMini">—</div>
+        </div>
+        <div class="panel-card panel-card--stat">
+          <span class="mini-label">Próximo hito</span>
+          <strong id="nextMilestone">—</strong>
+          <span class="mini-sub" id="nextMilestoneDate">—</span>
+        </div>
+      </div>
+    </div>
+    <button class="scroll-cue" id="scrollCue" aria-label="Bajar a la siguiente sección" type="button">
+      <span></span>
+    </button>
+  </section>
+
+  <section class="section" id="hub">
+    <div class="wrap">
+      <h2>Explora por módulo</h2>
+      <p class="section-lede">Elige un módulo del ciclo de formación para ver de qué trata, quién lo dicta y su material de clase. El resto de secciones (bases, evaluación, premios, fuentes de datos, contacto) están siempre arriba, en el menú.</p>
+      <div class="hub-grid">
+        <a class="hub-card module-card" href="modulo.html?mod=M1">
+          <span class="module-badge">Módulo 1</span>
+          <strong>Fundamentos y problemática</strong>
+          <span class="module-desc">Marco legal, enfoque de derechos humanos y los sistemas oficiales de información sobre violencia contra las mujeres.</span>
+          <span class="module-meta">07–09 set. · 3 sesiones</span>
+          <span class="hub-arrow">Ver módulo →</span>
+        </a>
+        <a class="hub-card module-card" href="modulo.html?mod=M2">
+          <span class="module-badge">Módulo 2</span>
+          <strong>Procesamiento y automatización</strong>
+          <span class="module-desc">Manipulación y limpieza de microdatos, extracción de datos web y uso de IA para optimizar código, con Python.</span>
+          <span class="module-meta">11–16 set. · 3 sesiones</span>
+          <span class="hub-arrow">Ver módulo →</span>
+        </a>
+        <a class="hub-card module-card" href="modulo.html?mod=M3">
+          <span class="module-badge">Módulo 3</span>
+          <strong>Análisis cuantitativo y muestreo</strong>
+          <span class="module-desc">Diseño muestral, análisis multivariado y visualización avanzada de datos (grafos y mapas).</span>
+          <span class="module-meta">18–25 set. · 3 sesiones</span>
+          <span class="hub-arrow">Ver módulo →</span>
+        </a>
+        <a class="hub-card module-card" href="modulo.html?mod=M4">
+          <span class="module-badge">Módulo 4</span>
+          <strong>Charla magistral</strong>
+          <span class="module-desc">Charla magistral sobre gestión de metadata y agentes de IA aplicados a la información pública.</span>
+          <span class="module-meta">28 set. · 1 sesión</span>
+          <span class="hub-arrow">Ver módulo →</span>
+        </a>
+        <a class="hub-card module-card" href="modulo.html?mod=M5">
+          <span class="module-badge">Módulo 5</span>
+          <strong>Visualización y comunicación</strong>
+          <span class="module-desc">Diseño de infografías de alto impacto, comunicación estratégica y el laboratorio final de soluciones.</span>
+          <span class="module-meta">29 set.–02 oct. · 3 sesiones</span>
+          <span class="hub-arrow">Ver módulo →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-partners">
+      <div class="footer-partner-group">
+        <span class="footer-partner-label">Organiza</span>
+        <div class="footer-logos">
+          <a class="footer-logo-chip" href="https://www.gob.pe/institucion/mimp/tema/observatorio-nacional-de-la-violencia-contra-las-mujeres-y-los-integrantes-del-grupo-familiar" target="_blank" rel="noopener"><img src="images/partners/observatorio.png" alt="Observatorio Nacional de la Violencia contra las Mujeres y los Integrantes del Grupo Familiar, MIMP" loading="lazy"></a>
+        </div>
+      </div>
+      <div class="footer-partner-group">
+        <span class="footer-partner-label">Aliados del ciclo de formación</span>
+        <div class="footer-logos">
+          <a class="footer-logo-chip" href="https://peru.unfpa.org/es" target="_blank" rel="noopener"><img src="images/partners/unfpa.png" alt="UNFPA" loading="lazy"></a>
+          <a class="footer-logo-chip" href="https://www.ipsos.com/es-pe" target="_blank" rel="noopener"><img src="images/partners/ipsos.png" alt="Ipsos" loading="lazy"></a>
+          <a class="footer-logo-chip" href="https://qlab.pucp.edu.pe/" target="_blank" rel="noopener"><img src="images/partners/qlab.png" alt="Q-LAB PUCP" loading="lazy"></a>
+          <a class="footer-logo-chip" href="https://www.gob.pe/88809-laboratorio-estadistico-labstat" target="_blank" rel="noopener"><img src="images/partners/inei.png" alt="INEI · LabStat" loading="lazy"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-contact">
+      <span>¿Consultas? <a href="mailto:observatorioviolencia@mimp.gob.pe">observatorioviolencia@mimp.gob.pe</a> · Central telefónica MIMP: <a href="tel:+51016261600">(01) 626-1600, anexo 8503</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="map-data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
