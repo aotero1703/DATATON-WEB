@@ -12,6 +12,10 @@ Micrositio informativo del Datatón Nacional 2026. Es una propuesta piloto no of
 
 El sitio es estático: no necesita instalar dependencias para publicarlo. Las grabaciones se reproducen desde Drive MIMP y no están almacenadas en este repositorio.
 
+## Código QR de la página de Formación
+
+El QR está en [`qr-dataton-formacion.png`](qr-dataton-formacion.png) para compartir por pantalla o mensajería y en [`qr-dataton-formacion.svg`](qr-dataton-formacion.svg) para impresión. Ambos abren `https://dataton-mimp-2026.vercel.app/formacion.html`. Si la dirección pública cambia, hay que generar un QR nuevo.
+
 ## Ver el sitio en tu computadora
 
 1. Descarga o clona este repositorio.
@@ -61,4 +65,3 @@ build_pages.py
 images/
 material/
 ```
-
