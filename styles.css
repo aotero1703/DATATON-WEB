@@ -57,7 +57,7 @@ body{
 h1,h2,h3{font-family:'Sora',system-ui,sans-serif; color:var(--navy-900); margin:0 0 .5em}
 h2{font-size:clamp(1.5rem,3vw,2.1rem)}
 h3{font-size:1.15rem}
-p{margin:0 0 1em}
+p{margin:0 0 1em; text-align:justify; text-justify:inter-word}
 a{color:var(--teal-700)}
 img{max-width:100%}
 .wrap{max-width:1120px; margin:0 auto; padding-inline:20px}
@@ -225,6 +225,7 @@ img{max-width:100%}
 .progress-track{height:10px; background:rgba(255,255,255,.12); border-radius:999px; overflow:hidden}
 .progress-fill{height:100%; width:0%; background:linear-gradient(90deg,var(--teal-500),var(--orange-500)); border-radius:999px; transition:width 1.2s ease}
 .panel-mini{margin-top:10px; font-size:.8rem; color:#94a3b8}
+.panel-note{margin-top:8px; font-size:.72rem; line-height:1.4; color:#78899e}
 .panel-card--stat{display:flex; flex-direction:column; gap:4px}
 .mini-label{text-transform:uppercase; font-size:.68rem; letter-spacing:.06em; color:var(--teal-500); font-weight:700}
 .panel-card--stat strong{font-family:'Sora',sans-serif; font-size:1.1rem; color:#fff}
@@ -317,7 +318,14 @@ img{max-width:100%}
 .map-legend-minmax{display:flex; justify-content:space-between; font-size:.8rem; color:var(--ink-soft); margin-bottom:16px}
 .map-legend-note{margin:0; font-size:.85rem; color:var(--ink-soft); line-height:1.6}
 .map-legend-note strong{color:var(--ink)}
-.map-source{margin-top:18px; font-size:.78rem; color:var(--ink-soft)}
+.map-downloads{display:flex; flex-wrap:wrap; gap:10px; margin-top:20px}
+.map-downloads a{
+  font-size:.8rem; font-weight:700; color:var(--teal-700); text-decoration:none;
+  background:var(--teal-100); padding:8px 14px; border-radius:999px; white-space:nowrap;
+  transition:background .15s ease, color .15s ease;
+}
+.map-downloads a:hover{background:var(--violet-100); color:var(--violet-700)}
+.map-source{margin-top:14px; font-size:.78rem; color:var(--ink-soft)}
 .map-source a{color:var(--teal-700); font-weight:700; text-underline-offset:2px}
 .map-source--method{margin-top:6px}
 @media (max-width:640px){
@@ -398,13 +406,128 @@ img{max-width:100%}
 }
 .chat-chip:hover{background:var(--violet-600); color:#fff; border-color:transparent}
 
+/* descarga del cronograma detallado en PDF — separado visualmente del
+   filtro de módulos y de los botones de material por sesión de abajo, para
+   que no se confunda con ellos (contorno en vez de relleno, más espacio,
+   y una línea divisoria propia). */
+.cronograma-download{margin-bottom:22px}
+.cronograma-download-label{
+  display:block; font-family:'Sora',sans-serif; font-size:.7rem; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px;
+}
+.cronograma-download-btn{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:.88rem; font-weight:700; color:var(--teal-700); text-decoration:none;
+  background:#fff; border:1.5px solid var(--teal-600); padding:11px 20px; border-radius:999px;
+  transition:background .15s ease, color .15s ease;
+}
+.cronograma-download-btn:hover{background:var(--teal-600); color:#fff}
+.schedule-divider{border-top:1px solid var(--line); margin:0 0 24px}
+
+/* asistencia al ciclo de formación — tabla compacta para que las 11 fechas
+   quepan de corrido sin tener que desplazarse horizontalmente. Cada fecha es
+   una sola columna con dos marcas adentro (ficha / Zoom). Num./Código/Nombre
+   quedan fijos (sticky) a la izquierda igual, por si en pantallas angostas
+   sigue haciendo falta desplazarse. */
+.asis-section{margin-top:40px; padding-top:32px; border-top:1px solid var(--line)}
+.asis-head{display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:flex-start; margin-bottom:18px}
+.asis-head h3{margin-bottom:4px}
+.asis-lede{margin:0; color:var(--ink-soft); font-size:.92rem; max-width:62ch}
+.asis-toolbar{display:flex; flex-wrap:wrap; gap:12px 20px; align-items:center; justify-content:space-between; margin-bottom:14px}
+.asis-search{
+  flex:1 1 240px; max-width:320px; padding:9px 14px; border-radius:999px; border:1.5px solid var(--line);
+  font-family:inherit; font-size:.88rem; background:#fff; color:var(--ink);
+}
+.asis-search:focus{outline:none; border-color:var(--teal-600)}
+.asis-legend{font-size:.78rem; color:var(--ink-soft); display:inline-flex; align-items:center; gap:6px; flex-wrap:wrap}
+.asis-mark{
+  display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px;
+  border-radius:4px; font-size:.6rem; font-weight:800; font-family:'Sora',sans-serif;
+  background:var(--line); color:var(--ink-soft); flex:none;
+}
+.asis-mark.on.asis-f{background:var(--teal-100); color:var(--teal-700)}
+.asis-mark.on.asis-z{background:var(--violet-100); color:var(--violet-700)}
+.asis-dispute{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 16px;
+  margin:-2px 0 14px; padding:10px 14px; background:var(--violet-100); border-radius:var(--radius); border:1px dashed var(--violet-600);
+}
+.asis-dispute-text{font-size:.82rem; color:var(--ink-soft)}
+.asis-dispute-btn{
+  flex:none; border:none; cursor:pointer; padding:8px 16px; border-radius:999px; font-family:inherit;
+  font-size:.82rem; font-weight:700; background:var(--violet-600); color:#fff;
+}
+.asis-dispute-btn:hover{filter:brightness(1.08)}
+.asis-dispute-btn:disabled{opacity:.6; cursor:default}
+
+/* modal del formulario de "Reportar un caso" */
+.asis-modal-overlay{
+  position:fixed; inset:0; background:rgba(11,18,32,.55); z-index:200;
+  display:flex; align-items:flex-start; justify-content:center; padding:40px 16px; overflow-y:auto;
+}
+.asis-modal-overlay[hidden]{display:none}
+.asis-modal{
+  position:relative; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow);
+  max-width:520px; width:100%; padding:28px 24px 24px;
+}
+.asis-modal-close{
+  position:absolute; top:14px; right:14px; border:none; background:var(--bg); color:var(--ink-soft);
+  width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:.9rem; line-height:1;
+}
+.asis-modal-close:hover{background:var(--line)}
+.asis-modal h3{margin:0 0 6px; padding-right:30px}
+.asis-modal-lede{margin:0 0 18px; color:var(--ink-soft); font-size:.88rem}
+.asis-form-launch{
+  display:flex; align-items:center; gap:14px; text-decoration:none;
+  padding:16px 18px; border-radius:var(--radius); border:1.5px solid var(--violet-600);
+  background:var(--violet-100); transition:filter .15s;
+}
+.asis-form-launch:hover{filter:brightness(1.04)}
+.asis-form-launch-icon{font-size:1.6rem; flex:none}
+.asis-form-launch-text{display:flex; flex-direction:column; gap:3px; flex:1}
+.asis-form-launch-text strong{color:var(--ink); font-size:.92rem}
+.asis-form-launch-text span{color:var(--ink-soft); font-size:.8rem}
+.asis-form-launch-arrow{font-size:1.2rem; color:var(--violet-600); flex:none}
+@media (max-width:640px){
+  .asis-modal{padding:24px 18px 20px}
+}
+.asis-table-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); -webkit-overflow-scrolling:touch}
+.asis-table-wrap::-webkit-scrollbar{height:10px}
+.asis-table-wrap::-webkit-scrollbar-track{background:var(--bg)}
+.asis-table-wrap::-webkit-scrollbar-thumb{background:var(--violet-600); border-radius:999px; border:2px solid var(--bg)}
+.asis-table{border-collapse:collapse; font-size:.78rem; width:100%; table-layout:fixed}
+.asis-table th, .asis-table td{padding:6px 3px; text-align:center; white-space:nowrap; border-bottom:1px solid var(--line)}
+.asis-table thead th{
+  background:var(--bg); font-family:'Sora',sans-serif; font-size:.66rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:.02em; color:var(--ink-soft); position:sticky; top:0; z-index:2;
+}
+.asis-table .asis-date-cell{width:6.2%}
+.asis-table td.asis-date-cell{display:table-cell}
+.asis-table td.asis-date-cell > .asis-mark + .asis-mark{margin-left:3px}
+.asis-table tbody tr:hover{background:var(--teal-100)}
+.asis-table td.asis-nombre, .asis-table th.asis-th-nombre{text-align:left}
+.asis-table .asis-sticky{position:sticky; background:var(--card); z-index:1}
+.asis-table thead .asis-sticky{background:var(--bg); z-index:3}
+.asis-table .asis-c-num{left:0; width:30px; min-width:30px}
+.asis-table .asis-c-cod{left:30px; width:52px; min-width:52px}
+.asis-table .asis-c-nombre{left:82px; width:150px; min-width:150px; text-overflow:ellipsis; overflow:hidden; box-shadow:2px 0 4px -2px rgba(15,23,42,.15)}
+.asis-table tbody tr:nth-child(even) .asis-sticky{background:#fafbfc}
+@media (max-width:900px){
+  .asis-table{font-size:.72rem}
+  .asis-table .asis-c-nombre{width:120px; min-width:120px}
+}
+
 /* module filter + schedule */
-.module-filter{display:flex; gap:8px; flex-wrap:wrap; margin:24px 0 20px}
+.module-filter{display:flex; gap:8px; flex-wrap:wrap; margin:0 0 20px}
 .module-filter button{
   border:1px solid var(--line); background:var(--card); padding:8px 14px; border-radius:999px;
   font-size:.82rem; font-weight:700; color:var(--ink-soft); cursor:pointer;
 }
 .module-filter button.is-active{background:linear-gradient(120deg,var(--violet-600),var(--teal-600)); color:#fff; border-color:transparent}
+.sched-mod-heading{
+  font-family:'Sora',sans-serif; font-size:1rem; font-weight:800; color:var(--ink);
+  margin:28px 0 14px; padding-bottom:8px; border-bottom:2px solid var(--line);
+}
+.sched-mod-heading:first-child{margin-top:0}
 
 .schedule{display:flex; flex-direction:column; gap:10px}
 .sched-row{
@@ -554,9 +677,52 @@ img{max-width:100%}
 #inscripcionEstado{margin:0; font-size:.85rem; color:#cbd5e1}
 
 /* footer */
-.site-footer{background:var(--navy-900); color:#94a3b8; padding:32px 0; margin-top:20px}
+/* fondo semitransparente (en vez de navy-900 sólido) para que el canvas de
+   partículas de toda la página (#bgCanvas, fijo detrás de todo el sitio) se
+   siga notando acá abajo también, en vez de cortarse en seco al llegar al
+   footer. overflow:hidden recorta la ilustración decorativa en los bordes. */
+.site-footer{background:rgba(11,18,32,.9); color:#94a3b8; padding:32px 0; margin-top:20px; overflow:hidden}
 .footer-inner p{margin:0 0 8px; font-size:.82rem; max-width:80ch}
 .footer-fine{color:#64748b; font-size:.76rem !important}
+
+/* pequeña ilustración decorativa (mujer analizando datos en laptop) en la
+   esquina del footer — puramente decorativa, se oculta en pantallas
+   angostas para no chocar con el contenido centrado. */
+.footer-illustration{position:absolute; right:18px; bottom:8px; width:132px; height:auto; opacity:.9; pointer-events:none}
+@media (max-width:900px){.footer-illustration{display:none}}
+
+/* "escribiendo código" en bucle: cada línea de la pantallita crece, se
+   mantiene y desaparece con un pequeño desfase (--d) para que parezca que
+   se van tipeando una tras otra; el cursor parpadea y el brazo se mece
+   como si estuviera tecleando. */
+.footer-illustration__line{
+  transform-box:fill-box; transform-origin:left center;
+  animation:footer-type 2.8s ease-in-out infinite;
+  animation-delay:var(--d, 0s);
+}
+@keyframes footer-type{
+  0%, 4%{transform:scaleX(0)}
+  18%, 78%{transform:scaleX(1)}
+  92%, 100%{transform:scaleX(0)}
+}
+.footer-illustration__cursor{animation:footer-cursor .9s steps(1,end) infinite}
+@keyframes footer-cursor{0%, 49%{opacity:1} 50%, 100%{opacity:0}}
+.footer-illustration__arm{
+  transform-box:fill-box; transform-origin:left center;
+  animation:footer-arm-type .4s ease-in-out infinite alternate;
+}
+@keyframes footer-arm-type{from{transform:translateY(0)} to{transform:translateY(1.6px)}}
+.footer-illustration__float{
+  transform-box:fill-box; transform-origin:center;
+  animation:footer-float 2.4s ease-in-out infinite;
+  animation-delay:var(--fd, 0s);
+}
+@keyframes footer-float{0%, 100%{transform:translateY(0)} 50%{transform:translateY(-4px)}}
+@media (prefers-reduced-motion: reduce){
+  .footer-illustration__line, .footer-illustration__cursor, .footer-illustration__arm, .footer-illustration__float{
+    animation:none;
+  }
+}
 
 .footer-partners{display:flex; flex-wrap:wrap; justify-content:center; gap:36px; margin-bottom:24px; padding-bottom:24px; border-bottom:1px solid rgba(148,163,184,.2); text-align:center}
 .footer-partner-group{display:flex; flex-direction:column; align-items:center; gap:12px}
@@ -593,12 +759,13 @@ img{max-width:100%}
 .page-title{color:#fff; font-size:clamp(1.6rem,3.4vw,2.2rem); margin-bottom:10px}
 .hero--page .lede{max-width:66ch}
 
-/* hub de la home: tarjetas para elegir un módulo del ciclo de formación */
 .hub-bridge{max-width:860px; border-left:4px solid var(--teal-500); padding:4px 0 4px 24px; margin-bottom:34px}
 .hub-bridge .eyebrow{display:block; margin-bottom:10px}
 .hub-bridge h2{margin:0 0 12px; max-width:22ch}
 .hub-bridge p{margin:0; max-width:75ch; color:var(--ink-soft); line-height:1.65}
 .hub-heading{font-family:'Sora',sans-serif; font-size:1.3rem; margin:0 0 8px; color:var(--ink)}
+
+/* hub de la home: tarjetas para elegir un módulo del ciclo de formación */
 .hub-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:16px; margin-top:28px}
 .hub-card{
   background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
@@ -629,17 +796,29 @@ img{max-width:100%}
 .module-desc{color:var(--ink-soft); font-size:.85rem; line-height:1.5}
 .module-meta{color:var(--ink-soft); font-size:.74rem; font-weight:700; text-transform:uppercase; letter-spacing:.03em}
 
-/* materiales de sesión (chips bajo cada fila del cronograma de formación),
-   agrupados en PPTs / Insumos / Grabación */
+/* materiales de sesión: fila compacta de botones-ícono bajo cada fila del
+   cronograma de formación (Grabación / Presentación / Material) */
 .sched-item{display:flex; flex-direction:column; gap:8px}
-.sched-materials{display:flex; flex-direction:column; gap:8px; padding-left:4px}
-.sched-mat-group{display:flex; flex-wrap:wrap; align-items:center; gap:8px}
-.sched-mat-label{font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft); margin-right:2px}
-.sched-materials a{
+.sched-materials{padding-left:4px}
+.sched-actions{display:flex; flex-wrap:wrap; align-items:center; gap:8px}
+.sched-action-btn{
+  display:inline-flex; align-items:center; gap:6px; font:inherit; cursor:pointer;
   font-size:.76rem; font-weight:700; color:var(--teal-700); text-decoration:none;
-  background:var(--teal-100); padding:5px 10px; border-radius:999px; white-space:nowrap;
+  background:var(--teal-100); border:0; padding:6px 12px; border-radius:999px; white-space:nowrap;
 }
-.sched-materials a:hover{background:var(--violet-100); color:var(--violet-700)}
+.sched-action-icon{font-size:.9em; line-height:1}
+.sched-action-btn:hover{background:var(--violet-100); color:var(--violet-700)}
+
+/* pestañas + visor embebido para el cuadro flotante de presentaciones */
+.ppt-tabs{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px}
+.ppt-tab{
+  font:inherit; cursor:pointer; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft);
+  font-size:.76rem; font-weight:700; padding:6px 12px; border-radius:999px;
+}
+.ppt-tab.active{border-color:var(--teal-600); background:var(--teal-100); color:var(--teal-700)}
+.ppt-tab:hover{border-color:var(--teal-500)}
+.ppt-frame{display:block; width:100%; height:70vh; border:1px solid var(--line); border-radius:10px; background:#fff}
+.ppt-download{display:inline-block; margin-top:12px}
 
 /* docentes */
 .teacher-stats{display:flex; gap:14px; flex-wrap:wrap; margin-top:26px}
@@ -685,6 +864,10 @@ img{max-width:100%}
 /* secciones de docentes agrupadas por entidad */
 .teacher-org-section{margin-bottom:32px}
 .teacher-org-section:last-child{margin-bottom:0}
+.teacher-org-eyebrow{
+  display:block; text-transform:uppercase; letter-spacing:.08em; font-size:.72rem;
+  font-weight:800; color:var(--violet-600); margin:0 0 4px;
+}
 .teacher-org-title{
   font-family:'Sora',sans-serif; font-size:1rem; font-weight:800; color:var(--ink);
   margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid var(--line);
@@ -780,13 +963,10 @@ img{max-width:100%}
   .hub-grid{grid-template-columns:1fr}
 }
 
-/* Reproductor de grabaciones */
-.recording-link{font:inherit; cursor:pointer; border:0; padding:0; color:var(--teal-700); background:transparent; font-weight:700}
-.recording-link:hover{text-decoration:underline}
+/* Cuadro flotante compartido: reproductor de grabaciones y visor de presentaciones */
 .recording-overlay{position:fixed; inset:0; z-index:1000; display:flex; align-items:center; justify-content:center; padding:20px; background:rgba(10,20,35,.82)}
 .recording-panel{width:min(900px,100%); position:relative; padding:24px; border-radius:var(--radius); background:var(--card); color:var(--ink)}
 .recording-panel h2{margin:0 40px 16px 0; font-size:1.15rem}
 .recording-panel video{display:block; width:100%; max-height:70vh; background:#000}
 .recording-panel a{display:inline-block; margin-top:12px}
 .recording-close{position:absolute; top:12px; right:16px; border:0; background:transparent; color:var(--ink); font-size:2rem; line-height:1; cursor:pointer}
-

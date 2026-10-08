@@ -37,10 +37,6 @@ HEAD = """<!DOCTYPE html>
 <body>
 
 <canvas id="bgCanvas" aria-hidden="true"></canvas>
-
-<div class="skip-note" role="note">
-  Recurso informativo <strong>no oficial</strong>, elaborado por un equipo participante como propuesta piloto de apoyo para el Datatón Nacional 2026 del MIMP. No sustituye las bases oficiales.
-</div>
 """
 
 def build_header(current_file):
@@ -71,6 +67,26 @@ def build_header(current_file):
 """
 
 FOOTER = """<footer class="site-footer">
+  <svg class="footer-illustration" viewBox="0 0 200 150" aria-hidden="true" focusable="false">
+    <line x1="14" y1="120" x2="186" y2="120" stroke="#334155" stroke-width="2" stroke-linecap="round"/>
+    <path d="M30 118 C30 96 34 84 46 84 C58 84 62 96 62 118 Z" fill="#a78bfa"/>
+    <circle cx="46" cy="66" r="13" fill="#fdba74"/>
+    <path d="M33 62 C33 50 40 44 46 44 C54 44 59 52 59 62 C59 56 54 54 46 54 C40 54 35 57 33 62 Z" fill="#6d28d9"/>
+    <path class="footer-illustration__arm" d="M60 100 C70 100 76 98 82 96" stroke="#a78bfa" stroke-width="7" stroke-linecap="round" fill="none"/>
+    <path d="M78 118 L150 118 L144 100 L90 100 Z" fill="#334155"/>
+    <rect x="90" y="64" width="46" height="37" rx="3" fill="#0e7490"/>
+    <rect x="94" y="68" width="38" height="29" rx="2" fill="#083344"/>
+    <!-- "código" escribiéndose en la pantalla, en bucle -->
+    <rect class="footer-illustration__line" style="--d:0s" x="97" y="73" width="18" height="2.6" rx="1.3" fill="#5eead4"/>
+    <rect class="footer-illustration__line" style="--d:.35s" x="97" y="79" width="26" height="2.6" rx="1.3" fill="#fdba74"/>
+    <rect class="footer-illustration__line" style="--d:.7s" x="97" y="85" width="14" height="2.6" rx="1.3" fill="#f472b6"/>
+    <rect class="footer-illustration__line" style="--d:1.05s" x="97" y="91" width="21" height="2.6" rx="1.3" fill="#5eead4"/>
+    <rect class="footer-illustration__cursor" x="97" y="91" width="2.6" height="2.6" fill="#fff"/>
+    <circle class="footer-illustration__float" style="--fd:0s" cx="160" cy="40" r="3" fill="#5eead4"/>
+    <circle class="footer-illustration__float" style="--fd:.4s" cx="175" cy="52" r="2.4" fill="#f472b6"/>
+    <circle class="footer-illustration__float" style="--fd:.8s" cx="150" cy="56" r="2" fill="#fdba74"/>
+    <path d="M150 56 L160 40 L175 52" stroke="#5eead4" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/>
+  </svg>
   <div class="wrap footer-inner">
     <div class="footer-partners">
       <div class="footer-partner-group">
@@ -97,6 +113,7 @@ FOOTER = """<footer class="site-footer">
 </footer>
 
 <script src="map-data.js"></script>
+<script src="asistencia-data.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
@@ -118,8 +135,8 @@ def page_header(eyebrow, title, lede):
   </section>
 """
 
-def wrap_page(current_file, title, description, main_html):
-    return HEAD.format(title=title, description=description) + build_header(current_file) + "\n<main>\n" + main_html + "\n</main>\n\n" + FOOTER
+def wrap_page(current_file, title, description, main_html, extra_body=""):
+    return HEAD.format(title=title, description=description) + build_header(current_file) + "\n<main>\n" + main_html + "\n</main>\n\n" + extra_body + FOOTER
 
 def section_wrap(inner, wrap_class=""):
     """Envuelve el contenido interno (sin hero) de una sección en su
@@ -193,7 +210,7 @@ def hero_home(version_link_html, hub_lede_extra=""):
         <span class="eyebrow">Concurso de soluciones basadas en datos</span>
         <h1>Datatón Nacional 2026 <span>contra la violencia hacia niñas, adolescentes y mujeres</span></h1>
         <p class="lede">
-          Convocado por el <strong>MIMP</strong>, a través del <a class="hero-observatorio" href="https://www.gob.pe/institucion/mimp/tema/observatorio-nacional-de-la-violencia-contra-las-mujeres-y-los-integrantes-del-grupo-familiar" target="_blank" rel="noopener">Observatorio Nacional de la Violencia contra las Mujeres y los Integrantes del Grupo Familiar</a>, con el ciclo de formación desarrollado junto a <strong>UNFPA</strong> e <strong>Ipsos</strong>. Este micrositio traduce las bases oficiales en un tablero de seguimiento vivo para el equipo.
+          El <strong>49.1%</strong> de mujeres peruanas de 15 a 49 años sufrió violencia de su pareja alguna vez, y el <strong>45.9%</strong> de niñas y niños de 9 a 11 años sufrió violencia física o psicológica de sus padres en el último año: la violencia golpea tanto a mujeres como a la niñez y la adolescencia. Por eso el <strong>MIMP</strong> convoca este Datatón: transformar esos datos oficiales en evidencia aplicada que el Estado use en decisiones de prevención, atención, protección y sanción, a través del <a class="hero-observatorio" href="https://www.gob.pe/institucion/mimp/tema/observatorio-nacional-de-la-violencia-contra-las-mujeres-y-los-integrantes-del-grupo-familiar" target="_blank" rel="noopener">Observatorio Nacional de la Violencia contra las Mujeres y los Integrantes del Grupo Familiar</a>, junto a <strong>UNFPA</strong>, <strong>Ipsos</strong>, <strong>Q-LAB PUCP</strong> y <strong>LabStat-INEI</strong>.
         </p>
         <div class="hero-actions">
           <a href="ruta.html" class="btn btn-primary">Ver cronograma en vivo</a>
@@ -207,11 +224,12 @@ def hero_home(version_link_html, hub_lede_extra=""):
       <div class="hero-panel" aria-hidden="true">
         <div class="panel-card">
           <div class="panel-row">
-            <span>Progreso del concurso</span>
+            <span>Progreso del cronograma general</span>
             <span id="progressPct">0%</span>
           </div>
           <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
           <div class="panel-mini" id="panelMini">—</div>
+          <div class="panel-note">De la convocatoria (jul.) a la premiación (nov.) — no es el avance del ciclo de formación.</div>
         </div>
         <div class="panel-card panel-card--stat">
           <span class="mini-label">Próximo hito</span>
@@ -229,11 +247,11 @@ def hero_home(version_link_html, hub_lede_extra=""):
     <div class="wrap">
       <div class="hub-bridge">
         <span class="eyebrow">Del reto a las herramientas</span>
-        <h2>¿Cómo pasamos del problema a una solución?</h2>
-        <p>El concurso invita a transformar datos sobre la violencia en propuestas útiles. Para preparar ese trabajo, el ciclo de formación acompaña a los equipos con cinco módulos: primero se conoce el problema y las fuentes; después se practican métodos de análisis y formas de comunicar los hallazgos.</p>
+        <h2>Así se preparó cada equipo</h2>
+        <p>Cinco módulos, de entender el problema a comunicar la solución con datos.</p>
       </div>
-      <h3 class="hub-heading">Explora los cinco módulos de formación</h3>
-      <p class="section-lede">Cada tarjeta reúne el tema, las sesiones, los docentes y los materiales del módulo.{hub_lede_extra}</p>
+      <h3 class="hub-heading">Los cinco módulos</h3>
+      <p class="section-lede">Cada tarjeta trae el tema, las sesiones, los docentes y los materiales del módulo.{hub_lede_extra}</p>
       <div class="hub-grid">
 {hub_html}
       </div>
@@ -243,7 +261,6 @@ def hero_home(version_link_html, hub_lede_extra=""):
 
 index_main = hero_home(
     '<a href="todo-en-uno.html" class="hero-alt-link">Prefieres verlo todo en una sola página →</a>',
-    " El resto de secciones (bases, evaluación, premios, fuentes de datos, contacto) están siempre arriba, en el menú.",
 )
 
 # ---------------------------------------------------------------------------
@@ -253,7 +270,21 @@ PROBLEMA_EYEBROW = "El contexto"
 PROBLEMA_TITLE = "Por qué este datatón"
 PROBLEMA_LEDE = "Cifras oficiales citadas en las bases del concurso (ENDES 2025 y ENARES 2024) que sustentan la urgencia de generar evidencia aplicada bajo la Ley N.° 30364."
 
-problema_inner = """      <div class="stat-grid">
+problema_inner = """      <div class="why-card">
+        <h3>¿Por qué es necesario este datatón?</h3>
+        <p>
+          Las bases oficiales señalan que, si bien la Ley N.° 30364 sí ha tenido impacto —el indicador
+          principal de violencia de pareja bajó 8.6 pp entre 2019 y 2025—, las cifras que siguen muestran que
+          la magnitud del problema sigue siendo significativa y que la sociedad peruana mantiene una alta
+          tolerancia hacia la violencia contra las mujeres. Esa combinación es la que justifica el datatón: no
+          basta con describir la problemática, hace falta <strong>generar conocimiento aplicado</strong> a
+          partir del análisis de datos cuantitativos, para identificar patrones, factores asociados y brechas
+          en la implementación de la Ley N.° 30364 y su Reglamento — evidencia que el Estado pueda usar para
+          tomar decisiones más efectivas de prevención, atención, protección y sanción.
+        </p>
+      </div>
+
+      <div class="stat-grid">
         <div class="stat-card">
           <strong class="stat-number" data-count="49.1" data-suffix="%">0%</strong>
           <span class="stat-desc">de mujeres de 15 a 49 años sufrió violencia de su pareja alguna vez</span>
@@ -278,7 +309,7 @@ problema_inner = """      <div class="stat-grid">
 
       <div class="ecology">
         <h3>Modelo ecológico de la violencia</h3>
-        <p>Toda infografía debe vincular al menos dos de estos niveles y explorar interacciones entre variables. Pasa el cursor (o toca en el celular) sobre cada nivel para ver ejemplos.</p>
+        <p>La violencia contra las mujeres no tiene una sola causa: se explica por factores que van desde lo más amplio (la sociedad) hasta lo más cercano a la persona. Pasa el cursor (o toca en el celular) sobre cada nivel para ver ejemplos.</p>
         <div class="ecology-diagram ecology-diagram--wide">
           <svg viewBox="0 0 600 340" class="ecology-svg ecology-svg--wide" role="img" aria-label="Modelo ecológico de la violencia: los niveles social, comunitario, relacional e individual, uno dentro del otro. Interactivo: pasa el cursor sobre cada nivel para ver ejemplos.">
             <ellipse class="ecology-level" data-level="social" cx="305" cy="170" rx="255" ry="140" fill="#4c1d95" stroke="#f7f9fb" stroke-width="2" tabindex="0" role="button" aria-label="Nivel social. Ver ejemplos"></ellipse>
@@ -298,25 +329,13 @@ problema_inner = """      <div class="stat-grid">
         <p class="ecology-source">Fuente: adaptado de Bronfenbrenner (1979) y Krug et al. (2002) — citado en las Bases del Datatón Nacional 2026. Ejemplos ilustrativos del tipo de factores de cada nivel, no cifras oficiales.</p>
       </div>
 
-      <div class="why-card">
-        <h3>¿Por qué estas cifras llevan a un datatón?</h3>
-        <p>
-          Las bases oficiales señalan que la data presentada evidencia que, si bien la Ley N.° 30364 sí ha tenido impacto
-          — el indicador principal bajó 8.6 pp entre 2019 y 2025 —, la magnitud del problema sigue siendo significativa
-          y la sociedad peruana mantiene una alta tolerancia hacia la violencia contra las mujeres. Esa combinación es
-          la que justifica el datatón: no basta con describir la problemática, hace falta <strong>generar conocimiento
-          aplicado</strong> a partir del análisis de datos cuantitativos, para identificar patrones, factores asociados
-          y brechas en la implementación de la Ley N.° 30364 y su Reglamento — evidencia que el Estado pueda usar para
-          tomar decisiones más efectivas de prevención, atención, protección y sanción.
-        </p>
-      </div>
-
       <div class="map-card">
         <h3>Las cifras por departamento</h3>
-        <p>El 49.1% y el 75.7% de arriba son promedios nacionales — varían bastante entre departamentos. Elige un indicador para ver el mapa.</p>
+        <p>El 49.1% de arriba es un promedio nacional — varía bastante entre departamentos. La violencia también golpea a la niñez: elige un indicador para ver cómo se distribuye en el país, tanto en mujeres como en niñas, niños y adolescentes.</p>
         <div class="map-toggle" role="group" id="mapToggle" aria-label="Elegir indicador del mapa">
-          <button type="button" class="map-toggle-btn is-active" data-indicator="endes">Violencia de pareja<br><small>ENDES 2025</small></button>
-          <button type="button" class="map-toggle-btn" data-indicator="enares">Tolerancia a la violencia<br><small>ENARES 2024</small></button>
+          <button type="button" class="map-toggle-btn is-active" data-indicator="endes">Violencia de pareja<br><small>Mujeres · ENDES 2025</small></button>
+          <button type="button" class="map-toggle-btn" data-indicator="c108">Castigo en la primera infancia<br><small>Niñas y niños &lt;6 años · ENARES 2024</small></button>
+          <button type="button" class="map-toggle-btn" data-indicator="c116">Violencia física/psicológica<br><small>Niñas y niños 9-11 años · ENARES 2024</small></button>
         </div>
         <div class="map-layout">
           <div class="map-svg-wrap">
@@ -385,9 +404,70 @@ FORMACION_EYEBROW = "30 horas lectivas"
 FORMACION_TITLE = "Ciclo de formación"
 FORMACION_LEDE = "Del 07 de septiembre al 02 de octubre de 2026, modalidad híbrida y virtual sincrónica (Zoom). Es el eje central de preparación para la entrega final."
 
-formacion_inner = """      <div class="module-filter" id="moduleFilter" role="tablist"></div>
+formacion_inner = """      <div class="cronograma-download">
+        <span class="cronograma-download-label">Cronograma general</span>
+        <a class="cronograma-download-btn" href="material/cronograma-ciclo-formacion.pdf" target="_blank" rel="noopener">📄 Descargar cronograma detallado (PDF)</a>
+      </div>
+      <div class="schedule-divider"></div>
+      <div class="module-filter" id="moduleFilter" role="tablist"></div>
       <div class="schedule" id="schedule"><!-- generado por script.js --></div>
-      <p class="fine-print">📄 = material de la sesión disponible para descargar (se va completando después de cada clase).</p>"""
+      <p class="fine-print">📄 = material de la sesión disponible para descargar (se va completando después de cada clase).</p>
+
+      <div class="asis-section" id="asistencia">
+        <div class="asis-head">
+          <div>
+            <h3>Asistencia al ciclo de formación</h3>
+            <p class="asis-lede">Registro oficial de asistencia por sesión de cada participante inscrito, tal como figura en el reporte del equipo organizador. Cada sesión tiene dos columnas porque hay dos registros distintos de esa fecha, y a veces no coinciden entre sí.</p>
+          </div>
+          <a class="cronograma-download-btn" href="material/asistencia/Reporte-Asistencia-Ciclo-Formacion-Dataton-2026.xlsx" target="_blank" rel="noopener">📊 Descargar Excel completo</a>
+        </div>
+        <div class="asis-toolbar">
+          <input type="search" id="asisSearch" class="asis-search" placeholder="Buscar por nombre o código…" aria-label="Buscar participante">
+          <span class="asis-legend">Cada fecha tiene 2 marcas: <span class="asis-mark on asis-f">✓</span> primero = marcó la ficha de registro ese día &nbsp;&nbsp; <span class="asis-mark on asis-z">✓</span> segundo = aparece en el reporte de conexión por Zoom &nbsp;&nbsp; <span class="asis-mark asis-f">–</span> = sin ese registro</span>
+        </div>
+        <div class="asis-dispute">
+          <span class="asis-dispute-text">¿No coincide tu asistencia a alguna sesión con lo que muestra la tabla?</span>
+          <button type="button" class="asis-dispute-btn" id="asisDisputeBtn">📝 Reportar un caso</button>
+        </div>
+        <div class="asis-table-wrap">
+          <table class="asis-table" id="asisTable"><!-- generado por script.js --></table>
+        </div>
+        <p class="fine-print" id="asisCount"></p>
+      </div>"""
+
+# El modal de "Reportar un caso" vive FUERA de <main> (ver wrap_page / el
+# armado de todo-en-uno más abajo) a propósito: <main> tiene su propio
+# position:relative + z-index:1 (para la capa decorativa de fondo), lo que
+# crea un contexto de apilamiento propio. Si el modal quedara anidado
+# adentro, su z-index:200 solo competiría DENTRO de ese contexto y el header
+# (position:sticky, z-index:50, hermano de <main>) lo taparía igual. Puesto
+# como hermano de <main> en el nivel del <body>, su z-index sí gana.
+#
+# Nota sobre el formulario: Google NO permite incrustar de verdad (vía
+# iframe) un formulario de una cuenta personal (no Workspace) — en vez del
+# formulario muestra una tarjeta "Este contenido no ha sido creado ni
+# aprobado por Google" con un botón que, al hacer clic, abre igual una
+# pestaña nueva. Por eso en vez de un <iframe> el modal muestra un botón
+# propio que abre el formulario en pestaña nueva directamente: mismo
+# resultado final que el botón de Google, pero sin la tarjeta vacía/fea.
+ASIS_GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScUK1msxU5Qbc81cYTsf7_N1letyNlhDk45DggcyR-yK7jtBQ/viewform"
+
+ASIS_MODAL_HTML = f"""<div class="asis-modal-overlay" id="asisModalOverlay" hidden>
+  <div class="asis-modal" role="dialog" aria-modal="true" aria-labelledby="asisModalTitle">
+    <button type="button" class="asis-modal-close" id="asisModalClose" aria-label="Cerrar">✕</button>
+    <h3 id="asisModalTitle">Reportar un caso de asistencia</h3>
+    <p class="asis-modal-lede">Cuéntanos qué sesión no coincide con la tabla. Se abre el formulario en una pestaña nueva — tus respuestas llegan directo al Observatorio.</p>
+    <a class="asis-form-launch" href="{ASIS_GOOGLE_FORM_URL}" target="_blank" rel="noopener">
+      <span class="asis-form-launch-icon">📋</span>
+      <span class="asis-form-launch-text">
+        <strong>Abrir formulario de reporte</strong>
+        <span>Nombre, código, fecha de la sesión y lo que corresponda — toma menos de 2 minutos.</span>
+      </span>
+      <span class="asis-form-launch-arrow">↗</span>
+    </a>
+  </div>
+</div>
+"""
 
 formacion_main = page_header(FORMACION_EYEBROW, FORMACION_TITLE, FORMACION_LEDE) + section_wrap(formacion_inner)
 
@@ -569,7 +649,7 @@ datos_inner = """      <div class="source-grid">
           <strong>Observatorio Nacional</strong><span>Violencia contra las Mujeres y los Integrantes del Grupo Familiar · MIMP</span>
         </a>
         <a class="source-card" href="https://portal.mpfn.gob.pe/pedmp/index.php/indicador/fiscalias-especializadas/18" target="_blank" rel="noopener">
-          <strong>Casos fiscales</strong><span>Indicador de fiscalías especializadas, Ministerio Público</span>
+          <strong>Casos fiscales</strong><span>Fiscalías especializadas en violencia contra la mujer y el grupo familiar, Ministerio Público</span>
         </a>
         <a class="source-card" href="https://portalestadistico.pj.gob.pe/" target="_blank" rel="noopener">
           <strong>Portal estadístico</strong><span>Poder Judicial</span>
@@ -618,7 +698,8 @@ PAGES = {
 }
 
 for filename, (title, desc, main_html) in PAGES.items():
-    html = wrap_page(filename, title, desc, main_html)
+    extra = ASIS_MODAL_HTML if filename == "formacion.html" else ""
+    html = wrap_page(filename, title, desc, main_html, extra_body=extra)
     with open(os.path.join(ROOT, filename), "w", encoding="utf-8") as f:
         f.write(html)
     print("wrote", filename)
@@ -688,9 +769,9 @@ onepage_html = (
     + "\n<main>\n"
     + onepage_main
     + "\n</main>\n\n"
+    + ASIS_MODAL_HTML
     + FOOTER
 )
 with open(os.path.join(ROOT, "todo-en-uno.html"), "w", encoding="utf-8") as f:
     f.write(onepage_html)
 print("wrote todo-en-uno.html")
-

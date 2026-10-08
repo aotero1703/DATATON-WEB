@@ -1,0 +1,16 @@
+node_modules
+
+# Los videos de las sesiones (grabaciones) nunca se sirven desde el propio
+# sitio -- se reproducen embebidos desde Google Drive o el Drive de MIMP.
+# Si algún .mp4/.mov grande queda guardado dentro de la carpeta del proyecto
+# (por ejemplo en material/moduloX/fecha/grabaciones/), Vercel lo intentaría
+# subir igual y el deploy falla si supera su límite de 100 MB por archivo.
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.avi
+
+# Carpeta duplicada/residual de una copia anterior del proyecto anidada
+# dentro de este mismo directorio -- no es parte del sitio que se publica.
+/dataton-mimp-2026/

@@ -125,13 +125,29 @@ if (inscripcionEstado) {
 }
 
 /* ---------- 5. Ciclo de formación: sesiones reales (solo en formacion.html) ---------- */
-// Enlaces directos a los cuatro archivos MP4 facilitados para estas sesiones.
+// Enlaces directos a los archivos MP4 facilitados para las sesiones ya grabadas.
 const GRABACIONES = {
   "M1|2026-09-07": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%201%2F07%20set%202026&files=Sesi%C3%B3n1-07.09.2026.mp4",
   "M1|2026-09-09": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%201%2F09%20set%202026&files=Sesi%C3%B3n2-09.09.2026.mp4",
-  "M2|2026-09-11": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%202%2F11%20set%202026&files=Sesi%C3%B3n3-11.09.2026.mp4",
-  "M2|2026-09-14": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%202%2F14%20set%202026&files=Sesi%C3%B3n4-14.09.2026.mp4",
+  "M2|2026-09-11": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%202%2F11%20set%202026%2FGrabaciones&files=Sesi%C3%B3n3-11.09.2026.mp4",
+  "M2|2026-09-14": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%202%2F14%20set%202026%2FGrabaciones&files=Sesi%C3%B3n4-14.09.2026.mp4",
+  "M2|2026-09-16": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%202%2F16%20set%202026%2FGrabaciones&files=Claudex%20y%20Codex.mp4",
+  "M3|2026-09-22": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%203%2F22%20de%20setiembre%2FGrabaciones&files=Muestreo%20y%20representatividad.mp4",
+  "M3|2026-09-24": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%203%2F24%20de%20setiembre%2FGrabaciones&files=An%C3%A1lisis%20multivariado%3A%20regresi%C3%B3n%20log%C3%ADstica%2C%20ACM%20y%20conglomerados.mp4",
+  "M3|2026-09-25": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%203%2F25%20de%20setiembre%2FGrabaciones&files=Visualizaci%C3%B3n%20avanzada%3A%20introducci%C3%B3n%20a%20grafos%20y%20GIS.mp4",
+  "M4|2026-09-28": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%204%2FGrabaciones&files=GMT20260928-204613_Recording_1920x1080.mp4",
+  "M5|2026-09-29|3:00–4:30 pm": "https://drive.google.com/file/d/1cfyq4E-w3jQph5g63KoBH4evJ6Xdkybh/preview",
+  "M5|2026-09-29|4:30–6:00 pm": "https://drive.google.com/file/d/1KbkINnhoFJnhl28X43XVBGFFjQPqy-AE/preview",
 };
+
+// Grabaciones guardadas en Google Drive (en vez de en el Drive de MIMP) se
+// identifican por su URL /preview y se incrustan con <iframe> — el Drive de
+// Google no ofrece una URL de stream directo apta para <video src>, sobre
+// todo en archivos grandes (activa la advertencia de "no se puede escanear
+// el archivo"). Esta es la URL que sí soporta reproducción vía iframe.
+function esGrabacionDeGoogleDrive(url) {
+  return url.includes("drive.google.com");
+}
 
 const SESIONES = [
   { mod: "M1", modName: "Fundamentos y problemática", date: "2026-09-07", time: "3:00–4:30 pm", topic: "Violencia contra las mujeres en el Perú: desafíos bajo la Ley N° 30364", inst: "MIMP · Kaarina Valer Jaime", fmt: "Virtual",
@@ -149,81 +165,175 @@ const SESIONES = [
   { mod: "M2", modName: "Procesamiento y automatización", date: "2026-09-11", time: "6:00–8:00 pm", topic: "Python I: manipulación de microdatos y limpieza con Pandas y Numpy", inst: "Alfonso Rodríguez", fmt: "Virtual",
     materials: [
       { label: "Presentación: Python I", href: "material/modulo-2/2026-09-11/ppts/Presentacion-01-Python-Alfonso.pdf", type: "ppt" },
-      { label: "Notebook: sesión 1 (ENAHO)", href: "material/modulo-2/2026-09-11/insumos/notebooks/01_sesion_1_estudiantes_enaho.ipynb", type: "insumo" },
-      { label: "Script: crear extractos ENAHO", href: "material/modulo-2/2026-09-11/insumos/scripts/crear_extractos_enaho.py", type: "insumo" },
-      { label: "Datos: enaho_2023_200_clase.csv", href: "material/modulo-2/2026-09-11/insumos/data/enaho_2023_200_clase.csv", type: "insumo" },
-      { label: "Datos: enaho_2023_300_clase.csv", href: "material/modulo-2/2026-09-11/insumos/data/enaho_2023_300_clase.csv", type: "insumo" },
-      { label: "Datos: enaho_2023_500_clase.csv", href: "material/modulo-2/2026-09-11/insumos/data/enaho_2023_500_clase.csv", type: "insumo" },
-      { label: "README del dataset", href: "material/modulo-2/2026-09-11/insumos/data/README.md", type: "insumo" },
+      { label: "Descargar material de la sesión (ZIP)", href: "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%202%2F11%20set%202026&files=Material", type: "insumo" },
     ],
   },
-  { mod: "M2", modName: "Procesamiento y automatización", date: "2026-09-14", time: "6:00–8:00 pm", topic: "Webscraping: extracción de datos de portales oficiales", inst: "Alfonso Rodríguez", fmt: "Virtual" },
-  { mod: "M2", modName: "Procesamiento y automatización", date: "2026-09-16", time: "6:00–8:00 pm", topic: "IA-Coworking: optimización de código con Codex y Claude", inst: "Alfonso Rodríguez", fmt: "Virtual" },
-  { mod: "M3", modName: "Análisis cuantitativo y muestreo", date: "2026-09-18", time: "4:00–6:00 pm", topic: "Muestreo y representatividad", inst: "IPSOS · Luis Sánchez", fmt: "Virtual" },
-  { mod: "M3", modName: "Análisis cuantitativo y muestreo", date: "2026-09-24", time: "4:00–7:00 pm", topic: "Análisis multivariado: regresión logística, ACM y conglomerados", inst: "IPSOS · Luis Sánchez", fmt: "Virtual" },
-  { mod: "M3", modName: "Análisis cuantitativo y muestreo", date: "2026-09-25", time: "4:00–7:00 pm", topic: "Visualización avanzada: introducción a grafos y GIS", inst: "LabStat-INEI · Axel Pereda / Rodrigo Rivarola", fmt: "Virtual" },
-  { mod: "M4", modName: "Charla magistral", date: "2026-09-28", time: "3:00–6:00 pm", topic: "Metadata y agentes: información que guía, agentes que actúan", inst: "LabStat-INEI · Luna / Chávez / Clavijo", fmt: "Híbrido" },
-  { mod: "M5", modName: "Visualización y comunicación", date: "2026-09-29", time: "3:00–4:30 pm", topic: "Diseño de infografías de alto impacto y narrativas de datos", inst: "IPSOS · Lucía Wiener", fmt: "Virtual" },
-  { mod: "M5", modName: "Visualización y comunicación", date: "2026-09-29", time: "4:30–6:00 pm", topic: "Comunicación estratégica basada en datos", inst: "UNFPA · Renato Zeballos", fmt: "Virtual" },
-  { mod: "M5", modName: "Visualización y comunicación", date: "2026-10-02", time: "3:00–7:00 pm", topic: "Laboratorio de soluciones: del dato a la política pública", inst: "MIMP · Comité Organizador", fmt: "Virtual" },
+  { mod: "M2", modName: "Procesamiento y automatización", date: "2026-09-14", time: "6:00–8:00 pm", topic: "Webscraping: extracción de datos de portales oficiales", inst: "Alfonso Rodríguez", fmt: "Virtual",
+    materials: [
+      { label: "Descargar material de la sesión (ZIP)", href: "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%202%2F14%20set%202026&files=Material", type: "insumo" },
+    ],
+  },
+  { mod: "M2", modName: "Procesamiento y automatización", date: "2026-09-16", time: "6:00–8:00 pm", topic: "IA-Coworking: optimización de código con Codex y Claude", inst: "Alfonso Rodríguez", fmt: "Virtual",
+    materials: [
+      { label: "Codex for data analytics", href: "material/modulo-2/2026-09-16/ppts/Codex-for-data-analytics.pdf", type: "ppt" },
+    ],
+  },
+  { mod: "M3", modName: "Análisis cuantitativo y muestreo", date: "2026-09-22", time: "4:00–6:00 pm", topic: "Muestreo y representatividad", inst: "IPSOS · Luis Sánchez", fmt: "Virtual",
+    materials: [
+      { label: "Muestreo y representatividad", href: "material/modulo-3/2026-09-22/ppts/Muestreo-Representatividad-2026.pdf", type: "ppt" },
+    ],
+  },
+  { mod: "M3", modName: "Análisis cuantitativo y muestreo", date: "2026-09-24", time: "4:00–7:00 pm", topic: "Análisis multivariado: regresión logística, ACM y conglomerados", inst: "IPSOS · Luis Sánchez", fmt: "Virtual",
+    materials: [
+      { label: "Análisis multivariado", href: "material/modulo-3/2026-09-24/ppts/Multivariado-2026.pdf", type: "ppt" },
+    ],
+  },
+  { mod: "M3", modName: "Análisis cuantitativo y muestreo", date: "2026-09-25", time: "4:00–7:00 pm", topic: "Visualización avanzada: introducción a grafos y GIS", inst: "LabStat-INEI · Axel Pereda / Rodrigo Rivarola", fmt: "Virtual",
+    materials: [
+      { label: "Introducción a grafos", href: "material/modulo-3/2026-09-25/ppts/Intro-a-Grafos.pdf", type: "ppt" },
+      { label: "Introducción a GIS", href: "material/modulo-3/2026-09-25/ppts/Intro-GIS.pdf", type: "ppt" },
+    ],
+  },
+  { mod: "M4", modName: "Charla magistral", date: "2026-09-28", time: "3:00–6:00 pm", topic: "Metadata y agentes: información que guía, agentes que actúan", inst: "LabStat-INEI · Luna / Chávez / Clavijo", fmt: "Híbrido",
+    materials: [
+      { label: "LLMs y Agentes: de la neurona al agente", href: "material/modulo-4/2026-09-28/ppts/LLMs-y-Agentes-neurona-al-agente.pdf", type: "ppt" },
+    ],
+  },
+  { mod: "M5", modName: "Visualización y comunicación", date: "2026-09-29", time: "3:00–4:30 pm", topic: "Diseño de infografías de alto impacto y narrativas de datos", inst: "IPSOS · Lucía Wiener", fmt: "Virtual",
+    materials: [
+      { label: "Diseño de infografías de alto impacto y narrativas de datos", href: "material/modulo-5/2026-09-29/ppts/Diseno-Infografias-Narrativas-Datos.pdf", type: "ppt" },
+    ],
+  },
+  { mod: "M5", modName: "Visualización y comunicación", date: "2026-09-29", time: "4:30–6:00 pm", topic: "Comunicación estratégica basada en datos", inst: "UNFPA · Renato Zeballos", fmt: "Virtual",
+    materials: [
+      { label: "Comunicación estratégica basada en datos", href: "material/modulo-5/2026-09-29/ppts/Comunicacion-Estrategica-Basada-en-Datos.pdf", type: "ppt" },
+    ],
+  },
+  { mod: "M5", modName: "Visualización y comunicación", date: "2026-10-02", time: "3:00–7:00 pm", topic: "Laboratorio de soluciones: del dato a la política pública", inst: "MIMP · Alexandra Otero", fmt: "Virtual" },
 ];
 
-// Arma el HTML de materiales de una sesión, agrupados en "PPTs" e
-// "Insumos" (notebooks, scripts, datos, README) — y el link a la
-// grabación disponible, solo para sesiones ya dictadas.
+// Cada sesión muestra una fila compacta de botones-ícono (Grabación /
+// Presentación / Material) en vez de listas de enlaces. Grabación y
+// Presentación abren un mismo cuadro flotante reutilizable — la grabación
+// con el video reproduciéndose adentro, la presentación con el PDF
+// mostrándose adentro (con pestañas si hay más de un archivo). Material
+// (insumos/datos, quizá varios archivos) se descarga directo como ZIP,
+// sin abrir cuadro. Los PPTs de cada sesión se guardan aquí, indexados.
+const MATERIALS_PPT = {};
+
 function renderSessionMaterials(s, isPast) {
-  const parts = [];
+  const actions = [];
+  // Primero se busca una grabación específica para esta sesión (clave con
+  // hora incluida, para cuando dos sesiones comparten fecha pero tienen
+  // cortes de video distintos); si no existe, se usa la grabación general
+  // de ese módulo+fecha (una sola grabación cubre ambas sesiones).
+  const recKeySpecific = `${s.mod}|${s.date}|${s.time}`;
+  const recKeyGeneral = `${s.mod}|${s.date}`;
+  const recKey = GRABACIONES[recKeySpecific] ? recKeySpecific : recKeyGeneral;
+  const recording = GRABACIONES[recKey];
+  if (recording && isPast) {
+    actions.push(
+      `<button type="button" class="sched-action-btn" data-recording="${recKey}"><span class="sched-action-icon">🎬</span>Grabación</button>`
+    );
+  }
   if (s.materials && s.materials.length) {
     const ppts = s.materials.filter((m) => m.type !== "insumo");
     const insumos = s.materials.filter((m) => m.type === "insumo");
     if (ppts.length) {
-      parts.push(
-        `<div class="sched-mat-group"><span class="sched-mat-label">PPTs</span>${ppts
-          .map((m) => `<a href="${m.href}" target="_blank" rel="noopener">📄 ${m.label}</a>`)
-          .join("")}</div>`
+      const key = `${s.mod}|${s.date}|${s.time}`;
+      MATERIALS_PPT[key] = ppts;
+      const label = ppts.length > 1 ? "Presentaciones" : "Presentación";
+      actions.push(
+        `<button type="button" class="sched-action-btn" data-materials="${key}"><span class="sched-action-icon">📄</span>${label}</button>`
       );
     }
-    if (insumos.length) {
-      parts.push(
-        `<div class="sched-mat-group"><span class="sched-mat-label">Insumos</span>${insumos
-          .map((m) => `<a href="${m.href}" target="_blank" rel="noopener">🗂️ ${m.label}</a>`)
-          .join("")}</div>`
+    insumos.forEach((m) => {
+      actions.push(
+        `<a class="sched-action-btn" href="${m.href.replaceAll("&", "&amp;")}" target="_blank" rel="noopener" download><span class="sched-action-icon">📦</span>Material</a>`
       );
-    }
+    });
   }
-  const recording = GRABACIONES[`${s.mod}|${s.date}`];
-  if (recording && isPast) {
-    parts.push(
-      `<div class="sched-mat-group"><span class="sched-mat-label">Grabación</span><button type="button" class="recording-link" data-recording="${s.mod}|${s.date}">▶ Ver grabación</button></div>`
-    );
-  }
-  return parts.join("");
+  return actions.length ? `<div class="sched-actions">${actions.join("")}</div>` : "";
 }
 
-document.addEventListener("click", (event) => {
-  const trigger = event.target.closest("[data-recording]");
-  if (!trigger) return;
-  const url = GRABACIONES[trigger.dataset.recording];
-  if (!url) return;
+function openOverlay({ label, bodyHtml, onClose }) {
   const overlay = document.createElement("div");
   overlay.className = "recording-overlay";
   overlay.setAttribute("role", "dialog");
   overlay.setAttribute("aria-modal", "true");
-  overlay.setAttribute("aria-label", "Grabación de la sesión");
+  overlay.setAttribute("aria-label", label);
   overlay.innerHTML = `
     <div class="recording-panel">
-      <button class="recording-close" type="button" aria-label="Cerrar grabación">×</button>
-      <h2>Grabación de la sesión</h2>
-      <video controls preload="metadata" playsinline src="${url.replaceAll("&", "&amp;")}"></video>
-      <a href="${url.replaceAll("&", "&amp;")}" target="_blank" rel="noopener">Descargar video</a>
+      <button class="recording-close" type="button" aria-label="Cerrar">×</button>
+      ${bodyHtml}
     </div>`;
-  const close = () => { overlay.querySelector("video").pause(); overlay.remove(); trigger.focus(); document.removeEventListener("keydown", onKey); };
+  const close = () => { if (onClose) onClose(overlay); overlay.remove(); document.removeEventListener("keydown", onKey); };
   const onKey = (e) => { if (e.key === "Escape") close(); };
   overlay.querySelector(".recording-close").addEventListener("click", close);
   overlay.addEventListener("click", (e) => { if (e.target === overlay) close(); });
   document.addEventListener("keydown", onKey);
   document.body.appendChild(overlay);
   overlay.querySelector(".recording-close").focus();
+  return overlay;
+}
+
+document.addEventListener("click", (event) => {
+  const recTrigger = event.target.closest("[data-recording]");
+  if (recTrigger) {
+    const url = GRABACIONES[recTrigger.dataset.recording];
+    if (!url) return;
+    if (esGrabacionDeGoogleDrive(url)) {
+      openOverlay({
+        label: "Grabación de la sesión",
+        bodyHtml: `
+          <h2>Grabación de la sesión</h2>
+          <iframe class="ppt-frame" src="${url}" allow="autoplay" allowfullscreen title="Grabación de la sesión"></iframe>`,
+      });
+      return;
+    }
+    openOverlay({
+      label: "Grabación de la sesión",
+      bodyHtml: `
+        <h2>Grabación de la sesión</h2>
+        <video controls preload="metadata" playsinline src="${url.replaceAll("&", "&amp;")}"></video>
+        <a href="${url.replaceAll("&", "&amp;")}" target="_blank" rel="noopener" download>Descargar video ↓</a>`,
+      onClose: (overlay) => overlay.querySelector("video").pause(),
+    });
+    return;
+  }
+  const matTrigger = event.target.closest("[data-materials]");
+  if (matTrigger) {
+    const items = MATERIALS_PPT[matTrigger.dataset.materials];
+    if (!items || !items.length) return;
+    const title = items.length > 1 ? "Presentaciones de la sesión" : "Presentación de la sesión";
+    const tabsHtml = items.length > 1
+      ? `<div class="ppt-tabs">${items
+          .map((m, i) => `<button type="button" class="ppt-tab${i === 0 ? " active" : ""}" data-idx="${i}">${m.label}</button>`)
+          .join("")}</div>`
+      : "";
+    openOverlay({
+      label: title,
+      bodyHtml: `
+        <h2>${title}</h2>
+        ${tabsHtml}
+        <iframe class="ppt-frame" src="${items[0].href}" title="${items[0].label}"></iframe>
+        <a class="ppt-download" href="${items[0].href}" target="_blank" rel="noopener" download>Descargar «${items[0].label}» ↓</a>`,
+    });
+    const panel = document.querySelector(".recording-overlay .recording-panel");
+    if (panel && items.length > 1) {
+      panel.querySelectorAll(".ppt-tab").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const item = items[Number(tab.dataset.idx)];
+          panel.querySelectorAll(".ppt-tab").forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+          panel.querySelector(".ppt-frame").src = item.href;
+          const dl = panel.querySelector(".ppt-download");
+          dl.href = item.href;
+          dl.textContent = `Descargar «${item.label}» ↓`;
+        });
+      });
+    }
+  }
 });
 
 const scheduleEl = document.getElementById("schedule");
@@ -233,7 +343,15 @@ if (scheduleEl && filterEl) {
 
   function renderSchedule(filter) {
     scheduleEl.innerHTML = "";
+    let lastMod = null;
     SESIONES.filter((s) => filter === "Todos" || s.mod === filter).forEach((s) => {
+      if (s.mod !== lastMod) {
+        lastMod = s.mod;
+        const heading = document.createElement("h3");
+        heading.className = "sched-mod-heading";
+        heading.textContent = `Módulo ${s.mod.replace("M", "")} · ${s.modName}`;
+        scheduleEl.appendChild(heading);
+      }
       const isPast = parseDate(s.date) < new Date(TODAY.toDateString());
       const item = document.createElement("div");
       item.className = "sched-item";
@@ -274,6 +392,98 @@ if (scheduleEl && filterEl) {
   renderSchedule("Todos");
 }
 
+/* ---------- 5a2. Asistencia al ciclo de formación (solo en formacion.html) ---------- */
+// Tabla armada desde ASISTENCIA_DATA / ASISTENCIA_FECHAS (asistencia-data.js),
+// que vienen del reporte oficial de asistencia tal como lo entregó el equipo
+// organizador — no se recalculan ni se "limpian" cifras, solo se muestran.
+// "F" (Ficha) = marcó la ficha de registro de esa sesión, "Z" (Zoom) =
+// aparece en el reporte de conexión de Zoom de esa sesión (son dos señales
+// distintas y a veces no coinciden, por eso se muestran por separado en vez
+// de fundirlas en un solo "asistió/no asistió"; cada columna de fecha trae
+// su propia sub-etiqueta "Ficha"/"Zoom" para que no dependa solo de la
+// leyenda). El botón "Reportar un caso" abre un correo pre-armado al
+// Observatorio para quien note una sesión mal registrada.
+const asisTableEl = document.getElementById("asisTable");
+if (asisTableEl && typeof ASISTENCIA_DATA !== "undefined") {
+  const asisSearchEl = document.getElementById("asisSearch");
+  const asisCountEl = document.getElementById("asisCount");
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  const theadHtml = `
+    <thead>
+      <tr>
+        <th class="asis-sticky asis-c-num">N°</th>
+        <th class="asis-sticky asis-c-cod">Código</th>
+        <th class="asis-sticky asis-c-nombre asis-th-nombre">Nombre</th>
+        ${ASISTENCIA_FECHAS.map(
+          (f) => `
+        <th class="asis-date-cell" title="Sesión del ${f} — primera marca: ficha de registro, segunda: Zoom">${f.slice(0, 5)}</th>`
+        ).join("")}
+      </tr>
+    </thead>`;
+
+  const rowHtml = ([num, cod, nombre, sesiones]) => `
+    <tr>
+      <td class="asis-sticky asis-c-num">${num}</td>
+      <td class="asis-sticky asis-c-cod">${cod ? esc(cod) : "—"}</td>
+      <td class="asis-sticky asis-c-nombre asis-nombre">${esc(nombre)}</td>
+      ${sesiones
+        .map(
+          ([ficha, zoom]) => `
+        <td class="asis-date-cell"><span class="asis-mark asis-f${ficha ? " on" : ""}" title="Ficha de registro: ${ficha ? "sí" : "no"}">${ficha ? "✓" : "–"}</span><span class="asis-mark asis-z${zoom ? " on" : ""}" title="Zoom: ${zoom ? "sí" : "no"}">${zoom ? "✓" : "–"}</span></td>`
+        )
+        .join("")}
+    </tr>`;
+
+  function renderAsistencia(filter) {
+    const q = filter.trim().toLowerCase();
+    const rows = q
+      ? ASISTENCIA_DATA.filter(([, cod, nombre]) => nombre.toLowerCase().includes(q) || (cod && cod.toLowerCase().includes(q)))
+      : ASISTENCIA_DATA;
+    asisTableEl.innerHTML = theadHtml + `<tbody>${rows.map(rowHtml).join("")}</tbody>`;
+    if (asisCountEl) {
+      asisCountEl.textContent = q
+        ? `Mostrando ${rows.length} de ${ASISTENCIA_DATA.length} participantes.`
+        : `${ASISTENCIA_DATA.length} participantes inscritos en el ciclo de formación.`;
+    }
+  }
+
+  renderAsistencia("");
+  if (asisSearchEl) {
+    asisSearchEl.addEventListener("input", () => renderAsistencia(asisSearchEl.value));
+  }
+
+  // Botón "Reportar un caso": abre un modal con el Google Form incrustado
+  // (vía iframe), para que las participantes no salgan del sitio. El envío
+  // lo maneja Google Forms por su cuenta dentro del iframe; las respuestas
+  // le llegan a Alexandra directo en Google Forms / Sheets.
+  const asisDisputeBtn = document.getElementById("asisDisputeBtn");
+  const asisModalOverlay = document.getElementById("asisModalOverlay");
+  const asisModalClose = document.getElementById("asisModalClose");
+
+  function openAsisModal() {
+    if (!asisModalOverlay) return;
+    asisModalOverlay.hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+  function closeAsisModal() {
+    if (!asisModalOverlay) return;
+    asisModalOverlay.hidden = true;
+    document.body.style.overflow = "";
+  }
+
+  if (asisDisputeBtn) asisDisputeBtn.addEventListener("click", openAsisModal);
+  if (asisModalClose) asisModalClose.addEventListener("click", closeAsisModal);
+  if (asisModalOverlay) {
+    asisModalOverlay.addEventListener("click", (e) => {
+      if (e.target === asisModalOverlay) closeAsisModal();
+    });
+  }
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && asisModalOverlay && !asisModalOverlay.hidden) closeAsisModal();
+  });
+}
+
 /* ---------- 5b. Docentes: datos y tarjetas compartidas ---------- */
 // Se define a nivel superior (no dentro de un "if") porque tanto
 // docentes.html como modulo.html necesitan esta misma lista y las mismas
@@ -287,18 +497,24 @@ if (scheduleEl && filterEl) {
 // mantiene al filtrar por módulo, porque renderTeacherCards solo filtra
 // (nunca reordena) este array. Sumillas condensadas a partir del documento
 // oficial "Sumilla ponentes" que envió el equipo — no se inventa nada de
-// quien no mandó su sumilla (Kaarina queda sin bio por ahora).
+// quien no mandó su sumilla.
 const DOCENTES = [
   // — MIMP —
-  { name: "Kaarina Valer Jaime", mod: "M1", org: "MIMP" },
   {
-    name: "Orlando Angulo", mod: "M1", org: "MIMP",
-    role: "Especialista estadístico, Observatorio Nacional",
-    bio: "Licenciado en Estadística (UNMSM) y egresado de la maestría en Gestión Pública (Universidad César Vallejo). Tiene más de 10 años de experiencia en análisis de datos y gestión de información. En el Observatorio Nacional trabaja con datos sobre violencia en el marco de la Ley N.º 30364 para apoyar la toma de decisiones.",
+    name: "Kaarina Valer Jaime", mod: "M1", org: "MIMP",
+    role: "Coordinadora",
+    bio: "Socióloga, magíster en Género, Sexualidad y Políticas Públicas y bachiller en Derecho, con experiencia en administración pública, docencia universitaria, investigación social y trabajo de campo con organizaciones de mujeres y jóvenes. Especialista social de la Dirección de Políticas para una Vida Libre de Violencia (MIMP).",
+    photo: "images/docentes/kaarina-valer-jaime.png",
   },
   {
-    name: "Yubel Salazar Ríos", mod: "M1", org: "MIMP",
-    role: "Programa Nacional Warmi Ñan",
+    name: "Orlando Angulo", mod: "M1", org: "MIMP",
+    role: "Especialista estadístico",
+    bio: "Licenciado en Estadística (UNMSM) y egresado de la maestría en Gestión Pública (Universidad César Vallejo). Tiene más de 10 años de experiencia en análisis de datos y gestión de información. En el Observatorio Nacional trabaja con datos sobre violencia en el marco de la Ley N.º 30364 para apoyar la toma de decisiones.",
+  },
+  // — MIMP · Warmi Ñan (programa distinto al Observatorio, va en su propia sección) —
+  {
+    name: "Yubel Salazar Ríos", mod: "M1", org: "MIMP", section: "warmiñan",
+    role: "Especialista",
     bio: "Ingeniera Estadística e Informática con más de 10 años en gestión de información pública. Especialista del Programa Nacional Warmi Ñan (MIMP), a cargo de la data de sus registros de prevención.",
   },
   // — UNFPA —
@@ -323,11 +539,23 @@ const DOCENTES = [
     role: "Directora de Proyectos, Ipsos",
     bio: "Socióloga y magíster en Estadística (PUCP), con más de 15 años en investigación cuantitativa. Directora de Proyectos de Ipsos Perú.",
   },
+  // Alexandra va físicamente aquí (aunque es del Observatorio/MIMP, no de
+  // Ipsos) solo para que en modulo.html?mod=M5 —que lista a los docentes
+  // del módulo SIN agrupar por entidad, en el orden de este array— su
+  // tarjeta aparezca después de la de Lucía. En docentes.html no cambia
+  // nada: ahí el agrupamiento es por org/section, así que ella sigue
+  // saliendo en la sección del Observatorio junto a Kaarina y Orlando.
+  {
+    name: "Alexandra Otero Flores", mod: "M5", org: "MIMP",
+    role: "Especialista estadística",
+    bio: "Economista (PUCP), con experiencia en evaluación de impacto y análisis de datos aplicados a políticas públicas. Especialista Estadística del Observatorio Nacional de la Violencia (MIMP), docente del Laboratorio de Econometría: Stata en la PUCP y parte del Government Analytics Virtual Fellowship del Banco Mundial.",
+    photo: "images/docentes/alexandra-otero.jpg",
+  },
   // — LabStat-INEI —
   {
-    name: "Axel Pereda Escalante", mod: "M3", org: "LabStat-INEI",
-    role: "Científico de datos, LabStat-INEI",
-    bio: "Bachiller en Matemáticas, cursa la maestría en IA y Data Science (UTEC). Científico de datos en LabStat-INEI, especializado en análisis geoespacial y grafos.",
+    name: "Andrés Clavijo Abril", mod: "M4", org: "LabStat-INEI",
+    role: "Coordinador, LabStat-INEI",
+    bio: "Economista, cofundador de Sciphage y Aignos. Consultor del INEI, donde impulsa el Laboratorio de Estadística (LabStat); ha asesorado a la CEPAL y al BID.",
   },
   {
     name: "Rodrigo Rivarola Monzón", mod: "M3", org: "LabStat-INEI",
@@ -340,14 +568,14 @@ const DOCENTES = [
     bio: "Economista (UNALM), egresada del programa Ciencia del Dato del INEI. Científica de datos en LabStat-INEI, lidera la adaptación del estándar SDMX.",
   },
   {
+    name: "Axel Pereda Escalante", mod: "M3", org: "LabStat-INEI",
+    role: "Científico de datos, LabStat-INEI",
+    bio: "Bachiller en Matemáticas, cursa la maestría en IA y Data Science (UTEC). Científico de datos en LabStat-INEI, especializado en análisis geoespacial y grafos.",
+  },
+  {
     name: "Marcelo Chávez Cisneros", mod: "M4", org: "LabStat-INEI",
     role: "Científico de datos, LabStat-INEI",
     bio: "Economista (PUCP) con diplomado en IA Generativa y MLOps. Científico de datos en LabStat-INEI, lidera proyectos de agentes inteligentes y gobernanza de datos.",
-  },
-  {
-    name: "Andrés Clavijo Abril", mod: "M4", org: "LabStat-INEI",
-    role: "Coordinador, LabStat-INEI",
-    bio: "Economista, cofundador de Sciphage y Aignos. Consultor del INEI, donde impulsa el Laboratorio de Estadística (LabStat); ha asesorado a la CEPAL y al BID.",
   },
   // — Q-LAB PUCP —
   {
@@ -371,7 +599,7 @@ const DOCENTE_FOTOS = {
   "Sebastián García Acosta": "images/docentes/sebastian-garcia.jpg",
   "Yubel Salazar Ríos": "images/docentes/yubel-salazar.jpg",
 };
-DOCENTES.forEach((d) => { d.photo = DOCENTE_FOTOS[d.name]; });
+DOCENTES.forEach((d) => { if (!d.photo) d.photo = DOCENTE_FOTOS[d.name]; });
 
 const initials = (name) => name.split(" ").filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
 
@@ -386,9 +614,12 @@ const orgKey = (org) => {
 
 // Orden fijo de secciones para agrupar docentes por entidad (el que pidió
 // el equipo): MIMP -que organiza- primero, luego UNFPA, Ipsos, Q-LAB y
-// LabStat-INEI.
+// LabStat-INEI. El Programa Warmi Ñan es de MIMP pero no es parte del
+// Observatorio, así que va en su propia sección (con el mismo eyebrow
+// "MIMP" arriba, para no repetir el nombre de la institución en cada tarjeta).
 const ORG_SECTIONS = [
-  { key: "mimp", label: "Observatorio Nacional de la Violencia contra las Mujeres y los Integrantes del Grupo Familiar" },
+  { key: "mimp", eyebrow: "MIMP", label: "Observatorio Nacional de la Violencia contra las Mujeres y los Integrantes del Grupo Familiar" },
+  { key: "warmiñan", eyebrow: "MIMP", label: "Programa Nacional Warmi Ñan" },
   { key: "unfpa", label: "UNFPA" },
   { key: "ipsos", label: "Ipsos" },
   { key: "qlab", label: "Q-LAB PUCP" },
@@ -448,11 +679,12 @@ function renderTeacherCards(filterMod, grouped = true) {
   const list = DOCENTES.filter((d) => filterMod === "Todos" || d.mod === filterMod);
   if (!grouped) return list.map(teacherCardHTML).join("");
 
-  return ORG_SECTIONS.map(({ key, label }) => {
-    const docentes = list.filter((d) => orgKey(d.org) === key);
+  return ORG_SECTIONS.map(({ key, label, eyebrow }) => {
+    const docentes = list.filter((d) => (d.section || orgKey(d.org)) === key);
     if (!docentes.length) return "";
     return `
       <div class="teacher-org-section">
+        ${eyebrow ? `<p class="teacher-org-eyebrow">${eyebrow}</p>` : ""}
         <h3 class="teacher-org-title">${label}</h3>
         <div class="teacher-org-grid">${docentes.map(teacherCardHTML).join("")}</div>
       </div>`;
@@ -703,6 +935,65 @@ if (rubricChartEl) {
 // a simple vista); renderDonutChart queda disponible por si se necesita en
 // otra parte del sitio.
 
+/* ---------- 7a. Fragmentos de código flotante (compartidos) ---------- */
+// Fragmentos de código de análisis de datos — representan a los equipos
+// programando sus soluciones (las fotos de personas van aparte, ver
+// .hero-photos en styles.css: banco de imágenes con licencia libre, no
+// fotos inventadas de participantes reales).
+//
+// Dos grupos: SNIPPETS_TEMA nombra directamente el problema del datatón
+// (violencia, tolerancia, normalización) y se dibuja más seguido, más
+// grande y más visible que el código genérico de SNIPPETS_BASE — para que
+// el fondo se lea como "de qué trata esto", no solo como código abstracto.
+// Se definen acá arriba (en vez de adentro de heroBackground) porque tanto
+// el canvas del hero (#heroCanvas) como el de fondo de toda la página
+// (#bgCanvas, sección 7c) los usan.
+const SNIPPETS_TEMA = [
+  "if violencia == True:",
+  "tolerancia_social.mean()",
+  "normalizar(violencia)",
+  "df['violencia_pareja']",
+  "detectar_normalizacion(df)",
+  "riesgo_tolerancia(x)",
+  "violencia.groupby('depto')",
+  "brecha_implementacion()",
+  "prevenir(violencia_niñez)",
+  "ENDES 2025 · ENARES 2024",
+  "castigo_fisico.sum()",
+  "atencion_proteccion_sancion",
+];
+const SNIPPETS_BASE = [
+  "import pandas as pd",
+  "df.groupby('region')",
+  "model.fit(X, y)",
+  "df.dropna(inplace=True)",
+  "p < 0.05",
+  "np.mean(riesgo)",
+  "for caso in datos:",
+  "plt.plot(x, y)",
+  "logit(y ~ x1 + x2)",
+  "cluster(k=4)",
+  "def prevenir(riesgo):",
+  "SELECT * FROM cem",
+  "pip install sklearn",
+  "return evidencia",
+  "corr(x, y)",
+  "geopandas.plot()",
+];
+// ~70% de los fragmentos que aparecen son del tema del datatón.
+function pickSnippet() {
+  const isTema = Math.random() < 0.7;
+  const text = isTema
+    ? SNIPPETS_TEMA[Math.floor(Math.random() * SNIPPETS_TEMA.length)]
+    : SNIPPETS_BASE[Math.floor(Math.random() * SNIPPETS_BASE.length)];
+  return { text, isTema };
+}
+function hexToRgba(hex, alpha) {
+  const n = parseInt(hex.slice(1), 16);
+  const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
 /* ---------- 7b. Fondo interactivo (canvas de datos + código) ---------- */
 // Aparece en TODAS las páginas: en la home es el hero grande, en las demás
 // es el banner superior compacto — ambos usan #heroCanvas / #heroSection.
@@ -718,31 +1009,6 @@ if (rubricChartEl) {
   let codeTokens = [];
   const mouse = { x: null, y: null, active: false };
   const colors = ["#a78bfa", "#5eead4", "#fdba74", "#f472b6"];
-
-  // Fragmentos de código de análisis de datos — representan a los equipos
-  // programando sus soluciones (las fotos de personas van aparte, ver
-  // .hero-photos en styles.css: banco de imágenes con licencia libre, no
-  // fotos inventadas de participantes reales).
-  const SNIPPETS = [
-    "import pandas as pd",
-    "df.groupby('region')",
-    "model.fit(X, y)",
-    "df.dropna(inplace=True)",
-    "p < 0.05",
-    "np.mean(riesgo)",
-    "for caso in datos:",
-    "if violencia == True:",
-    "plt.plot(x, y)",
-    "logit(y ~ x1 + x2)",
-    "ENDES · ENARES 2025",
-    "cluster(k=4)",
-    "def prevenir(riesgo):",
-    "SELECT * FROM cem",
-    "pip install sklearn",
-    "return evidencia",
-    "corr(x, y)",
-    "geopandas.plot()",
-  ];
 
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -766,16 +1032,37 @@ if (rubricChartEl) {
     }));
 
     const isCompact = hero.classList.contains("hero--page");
-    const tokenCount = window.innerWidth < 640 ? (isCompact ? 2 : 5) : isCompact ? 4 : 11;
-    codeTokens = Array.from({ length: tokenCount }, () => ({
-      text: SNIPPETS[Math.floor(Math.random() * SNIPPETS.length)],
-      x: Math.random() * w,
-      y: h + Math.random() * h,
+    const tokenCount = window.innerWidth < 640 ? (isCompact ? 3 : 7) : isCompact ? 6 : 15;
+    // initial=true: se reparten ya visibles por todo el fondo (no esperan a
+    // subir flotando desde abajo), para que se noten apenas carga la página.
+    // En el hero grande (no compacto) se prefieren los márgenes izq/der,
+    // para no competir con el párrafo de texto que ocupa el centro.
+    codeTokens = Array.from({ length: tokenCount }, () => makeToken(w, h, true, !isCompact));
+  }
+
+  // Los tokens "tema" (violencia, tolerancia, normalización) salen más
+  // grandes, más opacos y en negrita que el código genérico — por eso se
+  // notan más a simple vista en vez de perderse en el fondo. biasEdges los
+  // mantiene sobre todo en los márgenes del hero grande, lejos del párrafo.
+  function makeToken(w, h, initial, biasEdges) {
+    const { text, isTema } = pickSnippet();
+    const prefersEdge = !!biasEdges && Math.random() < 0.7;
+    const x = prefersEdge
+      ? Math.random() < 0.5
+        ? Math.random() * w * 0.22
+        : w * 0.78 + Math.random() * w * 0.22
+      : Math.random() * w;
+    return {
+      text,
+      isTema,
+      biasEdges,
+      x,
+      y: initial ? Math.random() * h : h + Math.random() * h,
       vy: -(Math.random() * 0.18 + 0.08),
-      size: Math.random() * 4 + 11,
+      size: isTema ? Math.random() * 5 + 14 : Math.random() * 4 + 10,
       color: colors[Math.floor(Math.random() * colors.length)],
-      alpha: Math.random() * 0.14 + 0.08,
-    }));
+      alpha: isTema ? Math.random() * 0.18 + 0.28 : Math.random() * 0.1 + 0.06,
+    };
   }
 
   function step() {
@@ -792,10 +1079,19 @@ if (rubricChartEl) {
       t.y += t.vy;
       if (t.y < -20) {
         t.y = h + 20;
-        t.x = Math.random() * w;
-        t.text = SNIPPETS[Math.floor(Math.random() * SNIPPETS.length)];
+        const prefersEdge = !!t.biasEdges && Math.random() < 0.7;
+        t.x = prefersEdge
+          ? Math.random() < 0.5
+            ? Math.random() * w * 0.22
+            : w * 0.78 + Math.random() * w * 0.22
+          : Math.random() * w;
+        const next = pickSnippet();
+        t.text = next.text;
+        t.isTema = next.isTema;
+        t.size = t.isTema ? Math.random() * 5 + 14 : Math.random() * 4 + 10;
+        t.alpha = t.isTema ? Math.random() * 0.18 + 0.28 : Math.random() * 0.1 + 0.06;
       }
-      ctx.font = `${t.size}px "Courier New", monospace`;
+      ctx.font = `${t.isTema ? "700" : "400"} ${t.size}px "Courier New", monospace`;
       ctx.fillStyle = hexToRgba(t.color, t.alpha);
       ctx.fillText(t.text, t.x, t.y);
     }
@@ -856,12 +1152,6 @@ if (rubricChartEl) {
     if (!reduceMotion) requestAnimationFrame(step);
   }
 
-  function hexToRgba(hex, alpha) {
-    const n = parseInt(hex.slice(1), 16);
-    const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
-    return `rgba(${r},${g},${b},${alpha})`;
-  }
-
   resize();
   window.addEventListener("resize", resize);
   hero.addEventListener("mousemove", (e) => {
@@ -905,8 +1195,26 @@ if (rubricChartEl) {
 
   let w, h, dpr;
   let dots = [];
+  let codeTokens = [];
   const colors = ["#a78bfa", "#5eead4", "#fdba74", "#f472b6"];
   const mouse = { x: null, y: null, active: false };
+
+  // Los mismos fragmentos de código del hero (ver sección 7a), pero más
+  // tenues y chicos — acá son solo un detalle de fondo entre secciones, no
+  // el protagonista. Suben lento y reaparecen abajo, como en el hero.
+  function makeBgToken(initial) {
+    const { text, isTema } = pickSnippet();
+    return {
+      text,
+      isTema,
+      x: Math.random() * w,
+      y: initial ? Math.random() * h : h + Math.random() * h,
+      vy: -(Math.random() * 0.12 + 0.05),
+      size: isTema ? Math.random() * 4 + 12 : Math.random() * 3 + 9,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      alpha: isTema ? Math.random() * 0.16 + 0.22 : Math.random() * 0.08 + 0.09,
+    };
+  }
 
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -928,10 +1236,31 @@ if (rubricChartEl) {
       r: Math.random() * 1.5 + 1.1,
       color: colors[Math.floor(Math.random() * colors.length)],
     }));
+
+    const tokenCount = window.innerWidth < 640 ? 6 : 13;
+    codeTokens = Array.from({ length: tokenCount }, () => makeBgToken(true));
   }
 
   function step() {
     ctx.clearRect(0, 0, w, h);
+
+    ctx.textBaseline = "middle";
+    for (const t of codeTokens) {
+      t.y += t.vy;
+      if (t.y < -20) {
+        t.y = h + 20;
+        t.x = Math.random() * w;
+        const next = pickSnippet();
+        t.text = next.text;
+        t.isTema = next.isTema;
+        t.size = t.isTema ? Math.random() * 4 + 12 : Math.random() * 3 + 9;
+        t.alpha = t.isTema ? Math.random() * 0.16 + 0.22 : Math.random() * 0.08 + 0.09;
+      }
+      ctx.font = `${t.isTema ? "700" : "400"} ${t.size}px "Courier New", monospace`;
+      ctx.fillStyle = hexToRgba(t.color, t.alpha);
+      ctx.fillText(t.text, t.x, t.y);
+    }
+
     for (const d of dots) {
       d.x += d.vx;
       d.y += d.vy;
@@ -1198,11 +1527,18 @@ if (scrollCueEl && heroSectionEl) {
       source: "INEI, ENDES 2025, cuadro 12.1",
       sourceUrl: "https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Lib2089/libro.pdf",
     },
-    enares: {
-      data: PERU_MAP_DATA.enares,
-      title: "% de personas de 18 años a más que tolera la violencia contra las mujeres",
+    c108: {
+      data: PERU_MAP_DATA.c108,
+      title: "% de niñas y niños menores de 72 meses cuya madre ejerce castigo físico y/o psicológico contra ellas o ellos",
       fmt: (v) => v.toFixed(1) + "%",
-      source: "INEI, ENARES 2024, cuadro 1.12",
+      source: "INEI, ENARES 2024, cuadro 1.08",
+      sourceUrl: "https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Lib2031/libro.pdf",
+    },
+    c116: {
+      data: PERU_MAP_DATA.c116,
+      title: "% de niñas y niños de 9 a 11 años que sufrió violencia física y/o psicológica de su madre o padre en los últimos 12 meses",
+      fmt: (v) => v.toFixed(1) + "%",
+      source: "INEI, ENARES 2024, cuadro 1.16",
       sourceUrl: "https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Lib2031/libro.pdf",
     },
   };
@@ -1307,4 +1643,3 @@ if (scrollCueEl && heroSectionEl) {
 
   render("endes");
 })();
-

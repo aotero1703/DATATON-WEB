@@ -14,10 +14,6 @@
 <body>
 
 <canvas id="bgCanvas" aria-hidden="true"></canvas>
-
-<div class="skip-note" role="note">
-  Recurso informativo <strong>no oficial</strong>, elaborado por un equipo participante como propuesta piloto de apoyo para el Datatón Nacional 2026 del MIMP. No sustituye las bases oficiales.
-</div>
 <header class="site-header" id="top">
   <div class="wrap header-inner">
     <div class="brand">
@@ -61,15 +57,77 @@
 
   <section class="section">
     <div class="wrap">
+      <div class="cronograma-download">
+        <span class="cronograma-download-label">Cronograma general</span>
+        <a class="cronograma-download-btn" href="material/cronograma-ciclo-formacion.pdf" target="_blank" rel="noopener">📄 Descargar cronograma detallado (PDF)</a>
+      </div>
+      <div class="schedule-divider"></div>
       <div class="module-filter" id="moduleFilter" role="tablist"></div>
       <div class="schedule" id="schedule"><!-- generado por script.js --></div>
       <p class="fine-print">📄 = material de la sesión disponible para descargar (se va completando después de cada clase).</p>
+
+      <div class="asis-section" id="asistencia">
+        <div class="asis-head">
+          <div>
+            <h3>Asistencia al ciclo de formación</h3>
+            <p class="asis-lede">Registro oficial de asistencia por sesión de cada participante inscrito, tal como figura en el reporte del equipo organizador. Cada sesión tiene dos columnas porque hay dos registros distintos de esa fecha, y a veces no coinciden entre sí.</p>
+          </div>
+          <a class="cronograma-download-btn" href="material/asistencia/Reporte-Asistencia-Ciclo-Formacion-Dataton-2026.xlsx" target="_blank" rel="noopener">📊 Descargar Excel completo</a>
+        </div>
+        <div class="asis-toolbar">
+          <input type="search" id="asisSearch" class="asis-search" placeholder="Buscar por nombre o código…" aria-label="Buscar participante">
+          <span class="asis-legend">Cada fecha tiene 2 marcas: <span class="asis-mark on asis-f">✓</span> primero = marcó la ficha de registro ese día &nbsp;&nbsp; <span class="asis-mark on asis-z">✓</span> segundo = aparece en el reporte de conexión por Zoom &nbsp;&nbsp; <span class="asis-mark asis-f">–</span> = sin ese registro</span>
+        </div>
+        <div class="asis-dispute">
+          <span class="asis-dispute-text">¿No coincide tu asistencia a alguna sesión con lo que muestra la tabla?</span>
+          <button type="button" class="asis-dispute-btn" id="asisDisputeBtn">📝 Reportar un caso</button>
+        </div>
+        <div class="asis-table-wrap">
+          <table class="asis-table" id="asisTable"><!-- generado por script.js --></table>
+        </div>
+        <p class="fine-print" id="asisCount"></p>
+      </div>
     </div>
   </section>
 
 </main>
 
+<div class="asis-modal-overlay" id="asisModalOverlay" hidden>
+  <div class="asis-modal" role="dialog" aria-modal="true" aria-labelledby="asisModalTitle">
+    <button type="button" class="asis-modal-close" id="asisModalClose" aria-label="Cerrar">✕</button>
+    <h3 id="asisModalTitle">Reportar un caso de asistencia</h3>
+    <p class="asis-modal-lede">Cuéntanos qué sesión no coincide con la tabla. Se abre el formulario en una pestaña nueva — tus respuestas llegan directo al Observatorio.</p>
+    <a class="asis-form-launch" href="https://docs.google.com/forms/d/e/1FAIpQLScUK1msxU5Qbc81cYTsf7_N1letyNlhDk45DggcyR-yK7jtBQ/viewform" target="_blank" rel="noopener">
+      <span class="asis-form-launch-icon">📋</span>
+      <span class="asis-form-launch-text">
+        <strong>Abrir formulario de reporte</strong>
+        <span>Nombre, código, fecha de la sesión y lo que corresponda — toma menos de 2 minutos.</span>
+      </span>
+      <span class="asis-form-launch-arrow">↗</span>
+    </a>
+  </div>
+</div>
 <footer class="site-footer">
+  <svg class="footer-illustration" viewBox="0 0 200 150" aria-hidden="true" focusable="false">
+    <line x1="14" y1="120" x2="186" y2="120" stroke="#334155" stroke-width="2" stroke-linecap="round"/>
+    <path d="M30 118 C30 96 34 84 46 84 C58 84 62 96 62 118 Z" fill="#a78bfa"/>
+    <circle cx="46" cy="66" r="13" fill="#fdba74"/>
+    <path d="M33 62 C33 50 40 44 46 44 C54 44 59 52 59 62 C59 56 54 54 46 54 C40 54 35 57 33 62 Z" fill="#6d28d9"/>
+    <path class="footer-illustration__arm" d="M60 100 C70 100 76 98 82 96" stroke="#a78bfa" stroke-width="7" stroke-linecap="round" fill="none"/>
+    <path d="M78 118 L150 118 L144 100 L90 100 Z" fill="#334155"/>
+    <rect x="90" y="64" width="46" height="37" rx="3" fill="#0e7490"/>
+    <rect x="94" y="68" width="38" height="29" rx="2" fill="#083344"/>
+    <!-- "código" escribiéndose en la pantalla, en bucle -->
+    <rect class="footer-illustration__line" style="--d:0s" x="97" y="73" width="18" height="2.6" rx="1.3" fill="#5eead4"/>
+    <rect class="footer-illustration__line" style="--d:.35s" x="97" y="79" width="26" height="2.6" rx="1.3" fill="#fdba74"/>
+    <rect class="footer-illustration__line" style="--d:.7s" x="97" y="85" width="14" height="2.6" rx="1.3" fill="#f472b6"/>
+    <rect class="footer-illustration__line" style="--d:1.05s" x="97" y="91" width="21" height="2.6" rx="1.3" fill="#5eead4"/>
+    <rect class="footer-illustration__cursor" x="97" y="91" width="2.6" height="2.6" fill="#fff"/>
+    <circle class="footer-illustration__float" style="--fd:0s" cx="160" cy="40" r="3" fill="#5eead4"/>
+    <circle class="footer-illustration__float" style="--fd:.4s" cx="175" cy="52" r="2.4" fill="#f472b6"/>
+    <circle class="footer-illustration__float" style="--fd:.8s" cx="150" cy="56" r="2" fill="#fdba74"/>
+    <path d="M150 56 L160 40 L175 52" stroke="#5eead4" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/>
+  </svg>
   <div class="wrap footer-inner">
     <div class="footer-partners">
       <div class="footer-partner-group">
@@ -96,6 +154,7 @@
 </footer>
 
 <script src="map-data.js"></script>
+<script src="asistencia-data.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

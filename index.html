@@ -14,10 +14,6 @@
 <body>
 
 <canvas id="bgCanvas" aria-hidden="true"></canvas>
-
-<div class="skip-note" role="note">
-  Recurso informativo <strong>no oficial</strong>, elaborado por un equipo participante como propuesta piloto de apoyo para el Datatón Nacional 2026 del MIMP. No sustituye las bases oficiales.
-</div>
 <header class="site-header" id="top">
   <div class="wrap header-inner">
     <div class="brand">
@@ -58,7 +54,7 @@
         <span class="eyebrow">Concurso de soluciones basadas en datos</span>
         <h1>Datatón Nacional 2026 <span>contra la violencia hacia niñas, adolescentes y mujeres</span></h1>
         <p class="lede">
-          Convocado por el <strong>MIMP</strong>, a través del <a class="hero-observatorio" href="https://www.gob.pe/institucion/mimp/tema/observatorio-nacional-de-la-violencia-contra-las-mujeres-y-los-integrantes-del-grupo-familiar" target="_blank" rel="noopener">Observatorio Nacional de la Violencia contra las Mujeres y los Integrantes del Grupo Familiar</a>, con el ciclo de formación desarrollado junto a <strong>UNFPA</strong> e <strong>Ipsos</strong>. Este micrositio traduce las bases oficiales en un tablero de seguimiento vivo para el equipo.
+          El <strong>49.1%</strong> de mujeres peruanas de 15 a 49 años sufrió violencia de su pareja alguna vez, y el <strong>45.9%</strong> de niñas y niños de 9 a 11 años sufrió violencia física o psicológica de sus padres en el último año: la violencia golpea tanto a mujeres como a la niñez y la adolescencia. Por eso el <strong>MIMP</strong> convoca este Datatón: transformar esos datos oficiales en evidencia aplicada que el Estado use en decisiones de prevención, atención, protección y sanción, a través del <a class="hero-observatorio" href="https://www.gob.pe/institucion/mimp/tema/observatorio-nacional-de-la-violencia-contra-las-mujeres-y-los-integrantes-del-grupo-familiar" target="_blank" rel="noopener">Observatorio Nacional de la Violencia contra las Mujeres y los Integrantes del Grupo Familiar</a>, junto a <strong>UNFPA</strong>, <strong>Ipsos</strong>, <strong>Q-LAB PUCP</strong> y <strong>LabStat-INEI</strong>.
         </p>
         <div class="hero-actions">
           <a href="ruta.html" class="btn btn-primary">Ver cronograma en vivo</a>
@@ -72,11 +68,12 @@
       <div class="hero-panel" aria-hidden="true">
         <div class="panel-card">
           <div class="panel-row">
-            <span>Progreso del concurso</span>
+            <span>Progreso del cronograma general</span>
             <span id="progressPct">0%</span>
           </div>
           <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
           <div class="panel-mini" id="panelMini">—</div>
+          <div class="panel-note">De la convocatoria (jul.) a la premiación (nov.) — no es el avance del ciclo de formación.</div>
         </div>
         <div class="panel-card panel-card--stat">
           <span class="mini-label">Próximo hito</span>
@@ -94,11 +91,11 @@
     <div class="wrap">
       <div class="hub-bridge">
         <span class="eyebrow">Del reto a las herramientas</span>
-        <h2>¿Cómo pasamos del problema a una solución?</h2>
-        <p>El concurso invita a transformar datos sobre la violencia en propuestas útiles. Para preparar ese trabajo, el ciclo de formación acompaña a los equipos con cinco módulos: primero se conoce el problema y las fuentes; después se practican métodos de análisis y formas de comunicar los hallazgos.</p>
+        <h2>Así se preparó cada equipo</h2>
+        <p>Cinco módulos, de entender el problema a comunicar la solución con datos.</p>
       </div>
-      <h3 class="hub-heading">Explora los cinco módulos de formación</h3>
-      <p class="section-lede">Cada tarjeta reúne el tema, las sesiones, los docentes y los materiales del módulo. El resto de secciones (bases, evaluación, premios, fuentes de datos, contacto) están siempre arriba, en el menú.</p>
+      <h3 class="hub-heading">Los cinco módulos</h3>
+      <p class="section-lede">Cada tarjeta trae el tema, las sesiones, los docentes y los materiales del módulo.</p>
       <div class="hub-grid">
         <a class="hub-card module-card" href="modulo.html?mod=M1">
           <span class="module-badge">Módulo 1</span>
@@ -142,6 +139,26 @@
 </main>
 
 <footer class="site-footer">
+  <svg class="footer-illustration" viewBox="0 0 200 150" aria-hidden="true" focusable="false">
+    <line x1="14" y1="120" x2="186" y2="120" stroke="#334155" stroke-width="2" stroke-linecap="round"/>
+    <path d="M30 118 C30 96 34 84 46 84 C58 84 62 96 62 118 Z" fill="#a78bfa"/>
+    <circle cx="46" cy="66" r="13" fill="#fdba74"/>
+    <path d="M33 62 C33 50 40 44 46 44 C54 44 59 52 59 62 C59 56 54 54 46 54 C40 54 35 57 33 62 Z" fill="#6d28d9"/>
+    <path class="footer-illustration__arm" d="M60 100 C70 100 76 98 82 96" stroke="#a78bfa" stroke-width="7" stroke-linecap="round" fill="none"/>
+    <path d="M78 118 L150 118 L144 100 L90 100 Z" fill="#334155"/>
+    <rect x="90" y="64" width="46" height="37" rx="3" fill="#0e7490"/>
+    <rect x="94" y="68" width="38" height="29" rx="2" fill="#083344"/>
+    <!-- "código" escribiéndose en la pantalla, en bucle -->
+    <rect class="footer-illustration__line" style="--d:0s" x="97" y="73" width="18" height="2.6" rx="1.3" fill="#5eead4"/>
+    <rect class="footer-illustration__line" style="--d:.35s" x="97" y="79" width="26" height="2.6" rx="1.3" fill="#fdba74"/>
+    <rect class="footer-illustration__line" style="--d:.7s" x="97" y="85" width="14" height="2.6" rx="1.3" fill="#f472b6"/>
+    <rect class="footer-illustration__line" style="--d:1.05s" x="97" y="91" width="21" height="2.6" rx="1.3" fill="#5eead4"/>
+    <rect class="footer-illustration__cursor" x="97" y="91" width="2.6" height="2.6" fill="#fff"/>
+    <circle class="footer-illustration__float" style="--fd:0s" cx="160" cy="40" r="3" fill="#5eead4"/>
+    <circle class="footer-illustration__float" style="--fd:.4s" cx="175" cy="52" r="2.4" fill="#f472b6"/>
+    <circle class="footer-illustration__float" style="--fd:.8s" cx="150" cy="56" r="2" fill="#fdba74"/>
+    <path d="M150 56 L160 40 L175 52" stroke="#5eead4" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/>
+  </svg>
   <div class="wrap footer-inner">
     <div class="footer-partners">
       <div class="footer-partner-group">
@@ -168,7 +185,7 @@
 </footer>
 
 <script src="map-data.js"></script>
+<script src="asistencia-data.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
-
