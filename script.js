@@ -209,7 +209,11 @@ const SESIONES = [
       { label: "Comunicación estratégica basada en datos", href: "material/modulo-5/2026-09-29/ppts/Comunicacion-Estrategica-Basada-en-Datos.pdf", type: "ppt" },
     ],
   },
-  { mod: "M5", modName: "Visualización y comunicación", date: "2026-10-02", time: "3:00–7:00 pm", topic: "Laboratorio de soluciones: del dato a la política pública", inst: "MIMP · Alexandra Otero", fmt: "Virtual" },
+  { mod: "M5", modName: "Visualización y comunicación", date: "2026-10-02", time: "3:00–7:00 pm", topic: "Laboratorio de soluciones: del dato a la política pública", inst: "MIMP · Alexandra Otero", fmt: "Virtual",
+    materials: [
+      { label: "Laboratorio de soluciones: del dato a la política pública", href: "material/modulo-5/2026-10-02/ppts/Laboratorio-Soluciones-Dato-Politica-Publica.pdf", type: "ppt" },
+    ],
+  },
 ];
 
 // Cada sesión muestra una fila compacta de botones-ícono (Grabación /
