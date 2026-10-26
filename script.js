@@ -1647,3 +1647,38 @@ if (scrollCueEl && heroSectionEl) {
 
   render("endes");
 })();
+
+/* -----------------------------------------------------------------------
+   Contador de visitas (pie de página). Llama a /api/visitas (función
+   serverless de Vercel respaldada en Upstash Redis) con POST para sumar
+   esta visita y mostrar el total acumulado del sitio. La clave de página
+   es el nombre del archivo sin ".html" ("index", "formacion", etc.); para
+   modulo.html se le agrega el módulo activo (?mod=M1..M5) como sufijo
+   ("modulo-m1"…"modulo-m5") para no mezclar las visitas de cada pestaña.
+   Si la llamada falla (sin red, función caída, etc.) simplemente no se
+   muestra nada — no debe romper el resto de la página.
+----------------------------------------------------------------------- */
+(function () {
+  const el = document.getElementById("footerVisits");
+  if (!el) return;
+
+  function paginaActual() {
+    let p = location.pathname.split("/").pop().replace(/\.html$/, "");
+    if (!p) p = "index";
+    if (p === "modulo") {
+      const mod = new URLSearchParams(location.search).get("mod");
+      if (mod) p = "modulo-" + mod.toLowerCase();
+    }
+    return p;
+  }
+
+  fetch("/api/visitas?pagina=" + encodeURIComponent(paginaActual()), { method: "POST" })
+    .then((r) => (r.ok ? r.json() : null))
+    .then((data) => {
+      if (data && typeof data.total === "number") {
+        el.textContent = `👁 ${data.total.toLocaleString("es-PE")} visitas al sitio`;
+      }
+    })
+    .catch(() => {});
+})();
+
