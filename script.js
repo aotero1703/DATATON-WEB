@@ -127,11 +127,11 @@ if (inscripcionEstado) {
 /* ---------- 5. Ciclo de formación: sesiones reales (solo en formacion.html) ---------- */
 // Enlaces directos a los archivos MP4 facilitados para las sesiones ya grabadas.
 const GRABACIONES = {
-  "M1|2026-09-07": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%201%2F07%20set%202026&files=Sesi%C3%B3n1-07.09.2026.mp4",
+  "M1|2026-09-07": "https://drive.google.com/file/d/1QWw7vZaDnuJvZ11DpfVVn7BjThTOb3GL/preview",
   "M1|2026-09-09": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%201%2F09%20set%202026&files=Sesi%C3%B3n2-09.09.2026.mp4",
   "M2|2026-09-11": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%202%2F11%20set%202026%2FGrabaciones&files=Sesi%C3%B3n3-11.09.2026.mp4",
-  "M2|2026-09-14": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%202%2F14%20set%202026%2FGrabaciones&files=Sesi%C3%B3n4-14.09.2026.mp4",
-  "M2|2026-09-16": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%202%2F16%20set%202026%2FGrabaciones&files=Claudex%20y%20Codex.mp4",
+  "M2|2026-09-14": "https://drive.google.com/file/d/1LPYz0cUakzLGAUKGQMmRgzfgVlHkFLgx/preview",
+  "M2|2026-09-16": "https://drive.google.com/file/d/1GdBSE5d9xcF7mheiX9UchLVV4neE0MRt/preview",
   "M3|2026-09-22": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%203%2F22%20de%20setiembre%2FGrabaciones&files=Muestreo%20y%20representatividad.mp4",
   "M3|2026-09-24": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%203%2F24%20de%20setiembre%2FGrabaciones&files=An%C3%A1lisis%20multivariado%3A%20regresi%C3%B3n%20log%C3%ADstica%2C%20ACM%20y%20conglomerados.mp4",
   "M3|2026-09-25": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%203%2F25%20de%20setiembre%2FGrabaciones&files=Visualizaci%C3%B3n%20avanzada%3A%20introducci%C3%B3n%20a%20grafos%20y%20GIS.mp4",
