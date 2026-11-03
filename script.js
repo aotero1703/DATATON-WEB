@@ -128,7 +128,7 @@ if (inscripcionEstado) {
 // Enlaces directos a los archivos MP4 facilitados para las sesiones ya grabadas.
 const GRABACIONES = {
   "M1|2026-09-07": "https://drive.google.com/file/d/1QWw7vZaDnuJvZ11DpfVVn7BjThTOb3GL/preview",
-  "M1|2026-09-09": "https://drive.mimp.gob.pe/s/Jd4xyNjHwBDBYP6/download?path=%2FModulo%201%2F09%20set%202026&files=Sesi%C3%B3n2-09.09.2026.mp4",
+  "M1|2026-09-09": "https://drive.google.com/file/d/1x-gqstoMlZIMK5M1M2H6UZdTGOTrG3d9/preview",
   "M2|2026-09-11": "https://drive.google.com/file/d/1DViXnvbFg4xGz-PfDs2NN-vQymx5x_1d/preview",
   "M2|2026-09-14": "https://drive.google.com/file/d/1LPYz0cUakzLGAUKGQMmRgzfgVlHkFLgx/preview",
   "M2|2026-09-16": "https://drive.google.com/file/d/1GdBSE5d9xcF7mheiX9UchLVV4neE0MRt/preview",
