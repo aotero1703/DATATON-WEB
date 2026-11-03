@@ -138,6 +138,7 @@ const GRABACIONES = {
   "M4|2026-09-28": "https://drive.google.com/file/d/1H4bzhXruuUFFODW7pSn74cmZohQ4todt/preview",
   "M5|2026-09-29|3:00–4:30 pm": "https://drive.google.com/file/d/1cfyq4E-w3jQph5g63KoBH4evJ6Xdkybh/preview",
   "M5|2026-09-29|4:30–6:00 pm": "https://drive.google.com/file/d/1KbkINnhoFJnhl28X43XVBGFFjQPqy-AE/preview",
+  "M5|2026-10-02": "https://drive.google.com/file/d/15nz1TdZwi1Wivml-C2YV3brFLp0CgKVx/preview",
 };
 
 // Grabaciones guardadas en Google Drive (en vez de en el Drive de MIMP) se
