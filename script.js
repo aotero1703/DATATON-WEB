@@ -198,6 +198,7 @@ const SESIONES = [
   { mod: "M4", modName: "Charla magistral", date: "2026-09-28", time: "3:00–6:00 pm", topic: "Metadata y agentes: información que guía, agentes que actúan", inst: "LabStat-INEI · Luna / Chávez / Clavijo", fmt: "Híbrido",
     materials: [
       { label: "LLMs y Agentes: de la neurona al agente", href: "material/modulo-4/2026-09-28/ppts/LLMs-y-Agentes-neurona-al-agente.pdf", type: "ppt" },
+      { label: "Ejemplo: cómo hacer buenos prompts en IA", href: "https://drive.google.com/file/d/1_mr6UYiJBhcBgivlGV-jb01s4sOaLMsA/preview", type: "video" },
     ],
   },
   { mod: "M5", modName: "Visualización y comunicación", date: "2026-09-29", time: "3:00–4:30 pm", topic: "Diseño de infografías de alto impacto y narrativas de datos", inst: "IPSOS · Lucía Wiener", fmt: "Virtual",
@@ -225,6 +226,10 @@ const SESIONES = [
 // (insumos/datos, quizá varios archivos) se descarga directo como ZIP,
 // sin abrir cuadro. Los PPTs de cada sesión se guardan aquí, indexados.
 const MATERIALS_PPT = {};
+// Materiales de tipo "video" (ej. un clip aparte de la grabación oficial,
+// como un ejemplo puntual dentro de la sesión): se abren en el mismo
+// cuadro/overlay que usa el botón "Grabación", pero con su propia etiqueta.
+const MATERIALS_VIDEO = {};
 
 function renderSessionMaterials(s, isPast) {
   const actions = [];
@@ -242,7 +247,8 @@ function renderSessionMaterials(s, isPast) {
     );
   }
   if (s.materials && s.materials.length) {
-    const ppts = s.materials.filter((m) => m.type !== "insumo");
+    const videos = s.materials.filter((m) => m.type === "video");
+    const ppts = s.materials.filter((m) => m.type !== "insumo" && m.type !== "video");
     const insumos = s.materials.filter((m) => m.type === "insumo");
     if (ppts.length) {
       const key = `${s.mod}|${s.date}|${s.time}`;
@@ -255,6 +261,13 @@ function renderSessionMaterials(s, isPast) {
     insumos.forEach((m) => {
       actions.push(
         `<a class="sched-action-btn" href="${m.href.replaceAll("&", "&amp;")}" target="_blank" rel="noopener" download><span class="sched-action-icon">📦</span>Material</a>`
+      );
+    });
+    videos.forEach((m, i) => {
+      const key = `${s.mod}|${s.date}|${s.time}|v${i}`;
+      MATERIALS_VIDEO[key] = m;
+      actions.push(
+        `<button type="button" class="sched-action-btn" data-video="${key}"><span class="sched-action-icon">🎥</span>${m.label}</button>`
       );
     });
   }
@@ -300,6 +313,30 @@ document.addEventListener("click", (event) => {
       label: "Grabación de la sesión",
       bodyHtml: `
         <h2>Grabación de la sesión</h2>
+        <video controls preload="metadata" playsinline src="${url.replaceAll("&", "&amp;")}"></video>
+        <a href="${url.replaceAll("&", "&amp;")}" target="_blank" rel="noopener" download>Descargar video ↓</a>`,
+      onClose: (overlay) => overlay.querySelector("video").pause(),
+    });
+    return;
+  }
+  const vidTrigger = event.target.closest("[data-video]");
+  if (vidTrigger) {
+    const info = MATERIALS_VIDEO[vidTrigger.dataset.video];
+    if (!info) return;
+    const url = info.href;
+    if (esGrabacionDeGoogleDrive(url)) {
+      openOverlay({
+        label: info.label,
+        bodyHtml: `
+          <h2>${info.label}</h2>
+          <iframe class="ppt-frame" src="${url}" allow="autoplay" allowfullscreen title="${info.label}"></iframe>`,
+      });
+      return;
+    }
+    openOverlay({
+      label: info.label,
+      bodyHtml: `
+        <h2>${info.label}</h2>
         <video controls preload="metadata" playsinline src="${url.replaceAll("&", "&amp;")}"></video>
         <a href="${url.replaceAll("&", "&amp;")}" target="_blank" rel="noopener" download>Descargar video ↓</a>`,
       onClose: (overlay) => overlay.querySelector("video").pause(),
