@@ -623,58 +623,62 @@ img{max-width:100%}
 .prize-extra-note strong{color:var(--teal-700)}
 .fine-print{color:var(--ink-soft); font-size:.82rem; margin-top:18px}
 
-/* equipos ganadores: leaderboard editorial — numeración grande como
-protagonista, franja de color fina por puesto (nada de tarjetas a todo
-color), y el 1er puesto apenas destacado con relleno sólido + trofeo. */
-.leaderboard{display:flex; flex-direction:column; gap:12px; margin:30px 0 8px}
-.rank-row{
-  position:relative; display:flex; align-items:center; gap:22px;
-  background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
-  padding:18px 26px; box-shadow:var(--shadow); overflow:hidden;
-  transition:transform .2s ease, box-shadow .2s ease;
+/* equipos ganadores: tratamiento editorial — sin cajas de color, la
+jerarquía corre por tipografía y espacio. El 1er puesto es la "nota de
+portada"; el resto es un índice que alterna de lado, con el número como
+marca de agua (contorno, nunca relleno — de ahí que ninguna fila quede
+"rellena" de color). */
+.editorial-winners{margin:34px 0 10px}
+
+.feature-lead{position:relative; padding:0 0 30px; margin-bottom:6px; border-bottom:2px solid var(--ink)}
+.feature-lead-head{display:flex; align-items:flex-start; justify-content:space-between; gap:20px}
+.feature-eyebrow{
+  font-family:'Sora',sans-serif; font-weight:800; font-size:.78rem;
+  text-transform:uppercase; letter-spacing:.08em; color:var(--teal-700);
 }
-.rank-row:hover{transform:translateX(5px)}
-.rank-row::before{content:''; position:absolute; left:0; top:0; bottom:0; width:5px}
-.rank-1::before{background:#b8860b}
-.rank-2::before{background:#94a3b8}
-.rank-3::before{background:#b5703a}
-.rank-4::before{background:var(--teal-600)}
-.rank-5::before{background:var(--violet-600)}
-.rank-6::before{background:var(--pink-500)}
-.rank-num{
-  flex:none; width:60px; text-align:center;
-  font-family:'Sora',sans-serif; font-weight:800; font-size:2.1rem; line-height:1;
-  color:transparent; -webkit-text-stroke:1.5px var(--ink-soft); opacity:.55;
+.feature-num{
+  font-family:'Sora',sans-serif; font-weight:800; font-size:4.2rem; line-height:.8;
+  color:transparent; -webkit-text-stroke:2px #b8860b; flex:none; margin-top:-14px;
 }
-.rank-1{
-  padding:24px 28px;
-  background:linear-gradient(100deg, rgba(184,134,11,.08), transparent 65%), var(--card);
-  box-shadow:0 16px 34px -18px rgba(184,134,11,.4);
+.feature-headline{
+  font-family:'Sora',sans-serif; font-weight:800; color:var(--navy-900);
+  font-size:clamp(1.5rem,3.4vw,2.3rem); line-height:1.2; margin:6px 0 10px; max-width:26ch;
 }
-.rank-1 .rank-num{font-size:2.7rem; color:#b8860b; -webkit-text-stroke:0; opacity:1}
-.rank-2 .rank-num{-webkit-text-stroke-color:#94a3b8}
-.rank-3 .rank-num{-webkit-text-stroke-color:#b5703a}
-.rank-4 .rank-num{-webkit-text-stroke-color:var(--teal-600)}
-.rank-5 .rank-num{-webkit-text-stroke-color:var(--violet-600)}
-.rank-6 .rank-num{-webkit-text-stroke-color:var(--pink-500)}
-.rank-body{display:flex; flex-direction:column; gap:5px; min-width:0; flex:1}
-.rank-meta{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
-.rank-label{
-  font-family:'Sora',sans-serif; font-weight:800; font-size:.76rem;
-  text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft);
+.feature-dek{margin:0; color:var(--ink-soft); font-size:1rem; max-width:62ch; line-height:1.6; text-align:left}
+
+.feature-index{list-style:none; margin:0; padding:0}
+.feature-row{
+  display:flex; align-items:center; gap:24px;
+  padding:22px 0; border-top:1px solid var(--line);
 }
-.rank-1 .rank-label{color:#8a6300}
-.rank-code{
-  font-family:'Sora',sans-serif; font-weight:800; font-size:.7rem; letter-spacing:.03em;
-  color:var(--ink-soft); background:var(--bg); padding:3px 10px; border-radius:999px;
+.feature-index li:last-child{border-bottom:1px solid var(--line)}
+.feature-row-num{
+  flex:none; width:80px; text-align:center;
+  font-family:'Sora',sans-serif; font-weight:800; font-size:2.6rem; line-height:1;
+  color:transparent; -webkit-text-stroke:1.5px var(--line); transition:-webkit-text-stroke-color .2s ease;
 }
-.rank-title{margin:0; font-size:.92rem; color:var(--ink); line-height:1.5}
-.rank-trophy{position:absolute; right:26px; top:50%; transform:translateY(-50%); font-size:1.7rem}
+.feature-row-body{flex:1; min-width:0}
+.feature-row-rank{
+  display:block; font-family:'Sora',sans-serif; font-weight:800; font-size:.72rem;
+  text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin-bottom:4px;
+}
+.feature-row-title{
+  margin:0; font-family:'Sora',sans-serif; font-weight:700; font-size:1.08rem; color:var(--ink);
+}
+.feature-row-code{
+  flex:none; font-family:'Sora',sans-serif; font-weight:700; font-size:.78rem; letter-spacing:.03em;
+  color:var(--ink-soft);
+}
+.feature-row--right{flex-direction:row-reverse; text-align:right}
+.feature-row:hover .feature-row-num{-webkit-text-stroke-color:var(--violet-500)}
+.feature-row:hover .feature-row-title{color:var(--violet-700)}
 @media (max-width:640px){
-  .rank-row{gap:14px; padding:16px 18px}
-  .rank-num{width:40px; font-size:1.6rem}
-  .rank-1 .rank-num{font-size:2rem}
-  .rank-trophy{display:none}
+  .feature-lead-head{flex-direction:column; gap:4px}
+  .feature-num{font-size:3rem; margin-top:0}
+  .feature-row{gap:14px; padding:16px 0}
+  .feature-row-num{width:48px; font-size:1.8rem}
+  .feature-row--right{flex-direction:row; text-align:left}
+  .feature-row-title{font-size:.95rem}
 }
 
 /* sources */
