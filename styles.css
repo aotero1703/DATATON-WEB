@@ -631,6 +631,43 @@ img{max-width:100%}
 .prize-card ul{margin:0; padding-left:18px; font-size:.86rem; line-height:1.6}
 .fine-print{color:var(--ink-soft); font-size:.82rem; margin-top:18px}
 
+/* equipos ganadores */
+.winners-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin:28px 0 8px}
+.winner-card{
+  position:relative; overflow:hidden;
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:22px 20px 18px; box-shadow:var(--shadow);
+  display:flex; flex-direction:column; gap:10px;
+  transition:transform .2s ease;
+}
+.winner-card:hover{transform:translateY(-4px)}
+.winner-card::before{content:''; position:absolute; top:0; left:0; right:0; height:5px}
+.winner-1::before{background:linear-gradient(90deg,#f5c451,#b8860b)}
+.winner-2::before{background:linear-gradient(90deg,#e2e8f0,#94a3b8)}
+.winner-3::before{background:linear-gradient(90deg,#e08e52,#a15a2a)}
+.winner-4::before{background:linear-gradient(90deg,var(--teal-600),var(--teal-500))}
+.winner-5::before{background:linear-gradient(90deg,var(--violet-600),var(--violet-500))}
+.winner-6::before{background:linear-gradient(90deg,var(--pink-500),var(--orange-500))}
+.winner-top{display:flex; align-items:center; gap:10px}
+.winner-medal{
+  display:inline-flex; align-items:center; justify-content:center; flex:none;
+  width:30px; height:30px; border-radius:50%; font-family:'Sora',sans-serif; font-weight:800; font-size:1rem;
+  background:var(--bg); color:var(--ink-soft);
+}
+.winner-1 .winner-medal, .winner-2 .winner-medal, .winner-3 .winner-medal{background:none; font-size:1.5rem; width:auto; height:auto}
+.winner-place{font-family:'Sora',sans-serif; font-weight:800; font-size:.95rem; color:var(--ink)}
+.winner-code{
+  display:inline-block; width:fit-content; font-family:'Sora',sans-serif; font-weight:800; font-size:.74rem;
+  letter-spacing:.03em; color:var(--teal-700); background:var(--teal-100); padding:4px 10px; border-radius:999px;
+}
+.winner-title{margin:0; font-size:.88rem; color:var(--ink-soft); line-height:1.55}
+@media (max-width:900px){
+  .winners-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .winners-grid{grid-template-columns:1fr}
+}
+
 /* sources */
 .source-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-top:26px}
 .source-card{
