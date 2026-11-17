@@ -18,7 +18,7 @@ const CRONOGRAMA = [
   { label: "Ciclo de formación", start: "2026-09-07", end: "2026-10-02" },
   { label: "Entrega final de la infografía", start: "2026-10-21", end: "2026-10-21" },
   { label: "Anuncio de equipos ganadores", start: "2026-11-09", end: "2026-11-13" },
-  { label: "Ceremonia de premiación", start: "2026-11-16", end: "2026-11-20" },
+  { label: "Ceremonia de premiación", start: "2026-12-03", end: "2026-12-03" },
 ];
 
 function parseDate(d) { return new Date(d + "T00:00:00"); }
