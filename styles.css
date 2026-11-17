@@ -631,41 +631,71 @@ img{max-width:100%}
 .prize-card ul{margin:0; padding-left:18px; font-size:.86rem; line-height:1.6}
 .fine-print{color:var(--ink-soft); font-size:.82rem; margin-top:18px}
 
-/* equipos ganadores */
-.winners-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin:28px 0 8px}
-.winner-card{
-  position:relative; overflow:hidden;
+/* equipos ganadores: podio para el 1-3, fila para el 4-6 */
+.podium-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+  margin:32px 0 22px; align-items:end;
+}
+.podium-card{
+  position:relative; border-radius:var(--radius); padding:26px 20px 22px; color:#fff;
+  box-shadow:var(--shadow); text-align:center; display:flex; flex-direction:column; align-items:center; gap:10px;
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.podium-card:hover{transform:translateY(-6px)}
+.podium-gold{
+  order:2; background:linear-gradient(160deg,#ffd873,#f0a824 55%,#b8860b);
+  padding-top:42px; padding-bottom:30px; z-index:2;
+  box-shadow:0 22px 40px -18px rgba(184,134,11,.5);
+}
+.podium-silver{order:1; align-self:end; background:linear-gradient(160deg,#eef2f7,#b9c3d1 55%,#7c8a9c)}
+.podium-bronze{order:3; align-self:end; background:linear-gradient(160deg,#e8a56e,#b5703a 55%,#7a4820)}
+.podium-crown{position:absolute; top:-22px; left:50%; transform:translateX(-50%); font-size:1.7rem; filter:drop-shadow(0 4px 6px rgba(0,0,0,.3))}
+.podium-medal{font-size:2.3rem; line-height:1}
+.podium-gold .podium-medal{font-size:2.9rem}
+.podium-rank{font-family:'Sora',sans-serif; font-weight:800; font-size:1.02rem; text-transform:uppercase; letter-spacing:.03em}
+.podium-gold .podium-rank{color:#3a2400}
+.podium-silver .podium-rank{color:#1e293b}
+.podium-bronze .podium-rank{color:#2c1608}
+.podium-code{
+  font-family:'Sora',sans-serif; font-weight:800; font-size:.76rem; letter-spacing:.04em;
+  background:rgba(255,255,255,.4); padding:4px 14px; border-radius:999px;
+}
+.podium-gold .podium-code{color:#3a2400}
+.podium-silver .podium-code{color:#1e293b}
+.podium-bronze .podium-code{color:#2c1608}
+.podium-title{margin:4px 0 0; font-size:.85rem; line-height:1.5; font-weight:600}
+.podium-gold .podium-title{color:#3a2400}
+.podium-silver .podium-title{color:#1e293b}
+.podium-bronze .podium-title{color:#2c1608}
+@media (max-width:760px){
+  .podium-grid{grid-template-columns:1fr; gap:16px}
+  .podium-gold, .podium-silver, .podium-bronze{order:initial; align-self:stretch; padding-top:26px}
+  .podium-crown{display:none}
+}
+
+.runner-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:8px}
+.runner-card{
+  display:flex; align-items:flex-start; gap:14px;
   background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
-  padding:22px 20px 18px; box-shadow:var(--shadow);
-  display:flex; flex-direction:column; gap:10px;
-  transition:transform .2s ease;
+  padding:18px 18px 18px 16px; box-shadow:var(--shadow);
+  transition:transform .2s ease, box-shadow .2s ease;
 }
-.winner-card:hover{transform:translateY(-4px)}
-.winner-card::before{content:''; position:absolute; top:0; left:0; right:0; height:5px}
-.winner-1::before{background:linear-gradient(90deg,#f5c451,#b8860b)}
-.winner-2::before{background:linear-gradient(90deg,#e2e8f0,#94a3b8)}
-.winner-3::before{background:linear-gradient(90deg,#e08e52,#a15a2a)}
-.winner-4::before{background:linear-gradient(90deg,var(--teal-600),var(--teal-500))}
-.winner-5::before{background:linear-gradient(90deg,var(--violet-600),var(--violet-500))}
-.winner-6::before{background:linear-gradient(90deg,var(--pink-500),var(--orange-500))}
-.winner-top{display:flex; align-items:center; gap:10px}
-.winner-medal{
-  display:inline-flex; align-items:center; justify-content:center; flex:none;
-  width:30px; height:30px; border-radius:50%; font-family:'Sora',sans-serif; font-weight:800; font-size:1rem;
-  background:var(--bg); color:var(--ink-soft);
+.runner-card:hover{transform:translateY(-3px); box-shadow:0 14px 30px -18px rgba(15,23,42,.4)}
+.runner-rank{
+  flex:none; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-family:'Sora',sans-serif; font-weight:800; font-size:1rem; color:#fff;
 }
-.winner-1 .winner-medal, .winner-2 .winner-medal, .winner-3 .winner-medal{background:none; font-size:1.5rem; width:auto; height:auto}
-.winner-place{font-family:'Sora',sans-serif; font-weight:800; font-size:.95rem; color:var(--ink)}
-.winner-code{
-  display:inline-block; width:fit-content; font-family:'Sora',sans-serif; font-weight:800; font-size:.74rem;
-  letter-spacing:.03em; color:var(--teal-700); background:var(--teal-100); padding:4px 10px; border-radius:999px;
+.runner-4 .runner-rank{background:linear-gradient(135deg,var(--teal-600),var(--teal-900))}
+.runner-5 .runner-rank{background:linear-gradient(135deg,var(--violet-600),var(--violet-700))}
+.runner-6 .runner-rank{background:linear-gradient(135deg,var(--pink-500),var(--orange-500))}
+.runner-body{display:flex; flex-direction:column; gap:6px; min-width:0}
+.runner-code{
+  width:fit-content; font-family:'Sora',sans-serif; font-weight:800; font-size:.72rem; letter-spacing:.03em;
+  color:var(--teal-700); background:var(--teal-100); padding:3px 10px; border-radius:999px;
 }
-.winner-title{margin:0; font-size:.88rem; color:var(--ink-soft); line-height:1.55}
-@media (max-width:900px){
-  .winners-grid{grid-template-columns:repeat(2,1fr)}
-}
-@media (max-width:640px){
-  .winners-grid{grid-template-columns:1fr}
+.runner-title{margin:0; font-size:.85rem; color:var(--ink-soft); line-height:1.5}
+@media (max-width:760px){
+  .runner-grid{grid-template-columns:1fr}
 }
 
 /* sources */
