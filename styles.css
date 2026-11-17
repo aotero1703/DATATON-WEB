@@ -614,21 +614,13 @@ img{max-width:100%}
 .ai-note strong{color:#fff}
 
 /* prizes */
-.prize-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:28px}
-.prize-card{
-  border-radius:var(--radius); padding:24px 20px; color:#fff; box-shadow:var(--shadow);
-  transition:transform .2s ease;
+.prize-shared-list{margin:0; padding-left:18px; font-size:.92rem; line-height:1.7; color:var(--ink)}
+.prize-extra-note{
+  margin:14px 0 0; font-size:.86rem; color:var(--ink-soft);
+  background:var(--teal-100); border-left:3px solid var(--teal-600);
+  padding:10px 14px; border-radius:0 10px 10px 0; width:fit-content;
 }
-.prize-card:hover{transform:translateY(-4px)}
-.prize-gold{background:linear-gradient(160deg,#f5c451,#b8860b 65%,#7c4a03)}
-.prize-gold .prize-rank{color:#3a2400}
-.prize-gold ul{color:#3a2400}
-.prize-silver{background:linear-gradient(160deg,#e2e8f0,#94a3b8 65%,#475569)}
-.prize-silver .prize-rank{color:#1e293b}
-.prize-silver ul{color:#1e293b}
-.prize-bronze{background:linear-gradient(160deg,#e08e52,#a15a2a 65%,#5c2f11)}
-.prize-rank{font-family:'Sora',sans-serif; font-weight:800; font-size:1.15rem; display:block; margin-bottom:12px}
-.prize-card ul{margin:0; padding-left:18px; font-size:.86rem; line-height:1.6}
+.prize-extra-note strong{color:var(--teal-700)}
 .fine-print{color:var(--ink-soft); font-size:.82rem; margin-top:18px}
 
 /* equipos ganadores: leaderboard editorial — numeración grande como
@@ -992,7 +984,6 @@ color), y el 1er puesto apenas destacado con relleno sólido + trofeo. */
   .hero-grid{grid-template-columns:1fr}
   .stat-grid{grid-template-columns:repeat(2,1fr)}
   .eval-grid{grid-template-columns:1fr}
-  .prize-grid{grid-template-columns:1fr}
   .source-grid{grid-template-columns:repeat(2,1fr)}
   .socios-grid{grid-template-columns:repeat(2,1fr)}
   .participa-grid{grid-template-columns:1fr}
