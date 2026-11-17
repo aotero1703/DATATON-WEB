@@ -635,62 +635,49 @@ marca de agua (contorno, nunca relleno — de ahí que ninguna fila quede
   color:var(--teal-600); margin:0 0 20px; padding-bottom:10px; border-bottom:1px solid var(--line);
 }
 .winners-tier-label--mention{color:var(--ink-soft); margin-top:52px}
-.feature-lead{position:relative; padding:0 0 30px; margin-bottom:6px; border-bottom:2px solid var(--ink)}
-.feature-lead-head{display:flex; align-items:flex-start; justify-content:space-between; gap:20px}
-.feature-eyebrow{
-  font-family:'Sora',sans-serif; font-weight:800; font-size:.78rem;
-  text-transform:uppercase; letter-spacing:.08em; color:var(--teal-700);
-}
-.feature-num{
-  font-family:'Sora',sans-serif; font-weight:800; font-size:4.4rem; line-height:.8;
-  flex:none; margin-top:-14px;
-  background:linear-gradient(160deg,#ffd873,#b8860b 75%);
-  -webkit-background-clip:text; background-clip:text; color:transparent;
-}
-.feature-headline{
-  font-family:'Sora',sans-serif; font-weight:800; color:var(--navy-900);
-  font-size:clamp(1.5rem,3.4vw,2.3rem); line-height:1.2; margin:6px 0 10px; max-width:26ch;
-}
-.feature-dek{margin:0; color:var(--ink-soft); font-size:1rem; max-width:62ch; line-height:1.6; text-align:left}
 
-.feature-index{list-style:none; margin:0; padding:0}
-.feature-row{
-  display:flex; align-items:center; gap:24px;
-  padding:22px 0; border-top:1px solid var(--line);
+.ceremony-banner{
+  display:inline-flex; align-items:baseline; gap:10px; flex-wrap:wrap;
+  margin-top:22px; padding:14px 20px; border-radius:999px;
+  background:var(--grad-brand); color:#fff;
 }
-.feature-index li:last-child{border-bottom:1px solid var(--line)}
-.feature-row-num{
-  flex:none; width:80px; text-align:center;
-  font-family:'Sora',sans-serif; font-weight:800; font-size:2.6rem; line-height:1;
-  color:var(--line); transition:transform .2s ease, color .2s ease;
+.ceremony-banner-label{font-family:'Sora',sans-serif; font-weight:700; font-size:.82rem; text-transform:uppercase; letter-spacing:.06em; opacity:.9}
+.ceremony-banner-date{font-family:'Sora',sans-serif; font-weight:800; font-size:1.15rem}
+
+.podium{display:flex; align-items:flex-end; justify-content:center; gap:20px; margin-bottom:16px}
+.podium-step{
+  flex:1; max-width:280px; display:flex; flex-direction:column; align-items:center; text-align:center;
+  padding:28px 20px 24px; border-radius:var(--radius) var(--radius) 0 0; background:var(--card);
+  border:1px solid var(--line); border-bottom:none;
 }
-.row-2 .feature-row-num{color:#aab4c2}
-.row-3 .feature-row-num{color:#c08a57}
-.row-4 .feature-row-num{color:var(--teal-500)}
-.row-5 .feature-row-num{color:var(--violet-500)}
-.row-6 .feature-row-num{color:var(--pink-500)}
-.feature-row:hover .feature-row-num{transform:scale(1.1)}
-.feature-row-body{flex:1; min-width:0}
-.feature-row-rank{
-  display:block; font-family:'Sora',sans-serif; font-weight:800; font-size:.72rem;
-  text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin-bottom:4px;
+.podium-medal{font-size:2.4rem; line-height:1}
+.podium-rank{font-family:'Sora',sans-serif; font-weight:800; font-size:.8rem; text-transform:uppercase; letter-spacing:.08em; margin-top:8px; color:var(--ink-soft)}
+.podium-title{font-family:'Sora',sans-serif; font-weight:700; font-size:1.05rem; margin:10px 0 6px; color:var(--ink)}
+.podium-code{font-family:'Sora',sans-serif; font-weight:700; font-size:.78rem; color:var(--ink-soft); letter-spacing:.04em}
+.podium-step--1{padding-top:40px; padding-bottom:40px; border-top:4px solid var(--amber-400); order:2; box-shadow:var(--shadow); position:relative; z-index:1}
+.podium-step--1 .podium-medal{font-size:3rem}
+.podium-step--2{order:1; border-top:4px solid #aab4c2}
+.podium-step--3{order:3; border-top:4px solid #c08a57}
+.podium-step--2, .podium-step--3{padding-top:20px; padding-bottom:20px}
+
+.mention-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+.mention-card{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:20px; border-top:4px solid var(--teal-500);
 }
-.feature-row-title{
-  margin:0; font-family:'Sora',sans-serif; font-weight:700; font-size:1.08rem; color:var(--ink);
-}
-.feature-row-code{
-  flex:none; font-family:'Sora',sans-serif; font-weight:700; font-size:.78rem; letter-spacing:.03em;
-  color:var(--ink-soft);
-}
-.feature-row--right{flex-direction:row-reverse; text-align:right}
-.feature-row:hover .feature-row-title{color:var(--violet-700)}
-@media (max-width:640px){
-  .feature-lead-head{flex-direction:column; gap:4px}
-  .feature-num{font-size:3rem; margin-top:0}
-  .feature-row{gap:14px; padding:16px 0}
-  .feature-row-num{width:48px; font-size:1.8rem}
-  .feature-row--right{flex-direction:row; text-align:left}
-  .feature-row-title{font-size:.95rem}
+.mention-card--5{border-top-color:var(--violet-500)}
+.mention-card--6{border-top-color:var(--pink-500)}
+.mention-rank{font-family:'Sora',sans-serif; font-weight:800; font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-soft)}
+.mention-title{font-family:'Sora',sans-serif; font-weight:700; font-size:.98rem; margin:8px 0 10px; color:var(--ink)}
+.mention-code{font-family:'Sora',sans-serif; font-weight:700; font-size:.76rem; color:var(--ink-soft)}
+
+@media(max-width:780px){
+  .podium{flex-direction:column; align-items:stretch}
+  .podium-step{max-width:none; border-radius:var(--radius); border-bottom:1px solid var(--line)}
+  .podium-step--1{order:0}
+  .podium-step--2{order:1}
+  .podium-step--3{order:2}
+  .mention-grid{grid-template-columns:1fr}
 }
 
 /* sources */
