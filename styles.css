@@ -630,6 +630,11 @@ marca de agua (contorno, nunca relleno — de ahí que ninguna fila quede
 "rellena" de color). */
 .editorial-winners{margin:34px 0 10px}
 
+.winners-tier-label{
+  font-family:'Sora',sans-serif; font-weight:800; font-size:.78rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--teal-600); margin:0 0 20px; padding-bottom:10px; border-bottom:1px solid var(--line);
+}
+.winners-tier-label--mention{color:var(--ink-soft); margin-top:52px}
 .feature-lead{position:relative; padding:0 0 30px; margin-bottom:6px; border-bottom:2px solid var(--ink)}
 .feature-lead-head{display:flex; align-items:flex-start; justify-content:space-between; gap:20px}
 .feature-eyebrow{
